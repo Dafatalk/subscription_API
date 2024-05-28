@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NewsubComponent } from './newsub/newsub.component'; 
 
 @Component({
   selector: 'app-root',
