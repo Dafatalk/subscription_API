@@ -7,6 +7,7 @@ import { SiginComponent } from './sigin/sigin.component';
 import { LoginComponent } from './login/login.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { NewsubComponent } from './newsub/newsub.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -16,10 +17,11 @@ import { NewsubComponent } from './newsub/newsub.component';
     SubscriptionComponent,
     NewsubComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

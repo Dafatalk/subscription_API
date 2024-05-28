@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
+  username: string = '';
+  password: string = '';
+  rememberMe: boolean = false;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  login() {
+    console.log(this.username, this.password, this.rememberMe);
   }
-
 }
