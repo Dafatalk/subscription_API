@@ -10,6 +10,20 @@ body{
 	border-radius: 4px;
   text-align: center;
 }
+.save{
+	display: block;
+	border: none;
+	margin: 20px auto;
+	width: 280px;
+	background-color: mediumseagreen;
+	padding: 15px 0;
+	text-align: center;
+	font-size: 18px;
+	border-radius: 4px;
+}
+.save:hover{
+	background-color: #eaeaea;
+}
 select{
   background-color: #eaeaea;
   font-size: 1.5em;

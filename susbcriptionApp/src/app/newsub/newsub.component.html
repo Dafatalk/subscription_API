@@ -4,19 +4,19 @@
 			<section id="preguntas">
 				<p>
 					<label for="name">Name</label>
-					<input type="text" name="nombres" id="name">
+					<input #name type="text" name="nombres" id="name">
 				</p>
 				<p>
           <div>
             <label for="select">Plan</label> <p></p>
             <select id="select" name="select">
-              <option value="opcion1">pobre</option>
+              <option #plan value="opcion1">pobre</option>
 
             </select>
           </div>
 		  <p>
 			<label for="phone">Descripción</label>
-			<input type="tel" name="telefono" id="phone" class="descripcion">
+			<input #description type="tel" name="telefono" id="phone" class="descripcion">
 		</p>
 				<div class="orden">
 					<div class="hpta1">
@@ -38,7 +38,9 @@
 			</section>
 			<section id="botones">
 				<p>
-					<input type="submit">
+					<button class="save" (click)="createNewSub(null, 123, description)"> 
+						Save
+					</button>
 				</p>
 				<p>
 					<input type="reset">
