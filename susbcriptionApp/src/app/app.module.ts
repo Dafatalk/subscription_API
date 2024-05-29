@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +10,8 @@ import { SubscriptionComponent } from './subscription/subscription.component';
 import { NewsubComponent } from './newsub/newsub.component';
 import { Routes } from '@angular/router';
 import {FormsModule} from "@angular/forms";
+import { AppHttpInterceptor } from './http.interceptor'; // Importa tu interceptor
+
 
 const appRoutes: Routes=[
   {path: 'sigin', component: SiginComponent},
@@ -24,15 +26,19 @@ const appRoutes: Routes=[
     SiginComponent,
     LoginComponent,
     SubscriptionComponent,
-    NewsubComponent
+    NewsubComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule
+    
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true }
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

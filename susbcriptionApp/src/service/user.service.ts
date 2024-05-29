@@ -30,5 +30,6 @@ import {Observable} from "rxjs";
     login(user: any): Observable<any>{
     return this.http.post<any>('http://localhost:8080/authenticate', user)
 }
+  
 
   }
