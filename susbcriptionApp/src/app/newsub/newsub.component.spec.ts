@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
 import { NewsubComponent } from './newsub.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SubscriptionService } from '../../service/subscription.service';
+
+
 
 describe('NewsubComponent', () => {
   let component: NewsubComponent;
@@ -8,7 +12,9 @@ describe('NewsubComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NewsubComponent ]
+      declarations: [ NewsubComponent],
+       imports:[
+        SubscriptionService]
     })
     .compileComponents();
 

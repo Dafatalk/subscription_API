@@ -1,4 +1,4 @@
-export interface User{
+export interface Plan{
     name:any;
     price:any;
     period:any;
