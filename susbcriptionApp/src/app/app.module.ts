@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -7,8 +8,16 @@ import { SiginComponent } from './sigin/sigin.component';
 import { LoginComponent } from './login/login.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { NewsubComponent } from './newsub/newsub.component';
+import { Routes } from '@angular/router';
 import {FormsModule} from "@angular/forms";
 
+const appRoutes: Routes=[
+  {path: 'sigin', component: SiginComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'subs', component: SubscriptionComponent},
+  {path: 'new', component: NewsubComponent}
+
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,11 +26,12 @@ import {FormsModule} from "@angular/forms";
     SubscriptionComponent,
     NewsubComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

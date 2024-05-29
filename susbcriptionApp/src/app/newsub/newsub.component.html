@@ -1,1 +1,50 @@
-<p>newsub works!</p>
+<body>
+	<div class="form" action="" method="POST">
+			<h1>New Subscription</h1>
+			<section id="preguntas">
+				<p>
+					<label for="name">Name</label>
+					<input #name type="text" name="nombres" id="name">
+				</p>
+				<p>
+          <div>
+            <label for="select">Plan</label> <p></p>
+            <select id="select" name="select">
+              <option #plan value="opcion1">pobre</option>
+
+            </select>
+          </div>
+		  <p>
+			<label for="phone">Descripción</label>
+			<input #description type="tel" name="telefono" id="phone" class="descripcion">
+		</p>
+				<div class="orden">
+					<div class="hpta1">
+						<label for="birth">Start date</label>
+						<input type="date" name="nacimiento" id="birth">
+					</div> <p> </p>
+					
+					<div class="hpta2">
+						<label for="birth">End date</label>
+						<input type="date" name="nacimiento" id="birth">
+					</div>
+
+				</div>
+				<p>
+
+					
+				</p>
+
+			</section>
+			<section id="botones">
+				<p>
+					<button class="save" (click)="createNewSub(null, 123, description)"> 
+						Save
+					</button>
+				</p>
+				<p>
+					<input type="reset">
+				</p>
+			</section>
+		</div>
+</body>

@@ -6,7 +6,7 @@ import {Observable} from "rxjs";
 @Injectable({
     providedIn: 'root'
   })
-  export class subscriptionService{
+  export class SubscriptionService{
 
     options = {
         headers: {
@@ -18,18 +18,20 @@ import {Observable} from "rxjs";
           'Vary': 'Origin',
           'Accept': 'application/json',
         }
-      };
+    };
 
       
   constructor(private http: HttpClient) {
-}
 
-    createSubscription(subscription: any): Observable<any>{
-        return this.http.post<any>('http://localhost:8080/api/v1/rest/subscription', subscription)
+  } 
+
+  createSubscription(subscription: any): Observable<any>{
+    return this.http.post<any>('http://localhost:8080/api/v1/rest/subscription', subscription)
   }
+
   getPlan(plan: any): Observable<any>{
     return this.http.get<any>('http://localhost:8080/api/v1/rest/subscription')
-}
-
-
   }
+
+
+}

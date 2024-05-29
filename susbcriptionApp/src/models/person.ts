@@ -1,4 +1,4 @@
-export interface User{
+export interface Person{
     name:any;
     lastname:any;
     mobileNumber:any;
