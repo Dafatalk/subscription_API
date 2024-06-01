@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-sigin',
+  templateUrl: './sigin.component.html',
+  styleUrls: ['./sigin.component.css']
 })
-export class RegisterComponent {
+export class SiginComponent {
   name: string = '';
   lastName: string = '';
   mobileNumber: string = '';
@@ -13,7 +13,7 @@ export class RegisterComponent {
   identityDocument: string = '';
   email: string = '';
 
-  register() {
+  sigin() {
     // Aquí puedes manejar la lógica de registro
     console.log(this.name, this.lastName, this.mobileNumber, this.documentType, this.identityDocument, this.email);
   }
