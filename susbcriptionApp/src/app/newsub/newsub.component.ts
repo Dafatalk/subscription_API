@@ -23,9 +23,12 @@ export class NewsubComponent implements OnInit {
   constructor( private subscriptionService:SubscriptionService) {
     
   }
-  createNewSub(userId:any, planId:any, status:any){
-    const startDate = Date.now;
-    const endDate = Date.now
+  createNewSub( status:any){
+    const startDate = "2024-03-28T06:28:50.833";
+    const endDate = "2024-03-28T06:28:50.833";
+    const userId="8d82a7dd-dc11-4562-8ef9-bd888213550e";
+    const planId = "2aee5629-fd12-4d4c-81ec-8c82e783960c";  
+
     const newsubscription:Subscription = {
       userId:userId,
       planId:planId,
@@ -33,6 +36,7 @@ export class NewsubComponent implements OnInit {
       startDate:startDate,
       endDate:endDate
     }
+    
 
         this.subscriptionService.createSubscription(newsubscription).subscribe(
       (response) => {

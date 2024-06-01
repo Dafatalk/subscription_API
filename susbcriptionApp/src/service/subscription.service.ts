@@ -25,12 +25,32 @@ import {Observable} from "rxjs";
 
   } 
 
-  createSubscription(subscription: any): Observable<any>{
-    return this.http.post<any>('http://localhost:8080/api/v1/rest/subscription', subscription)
+  createSubscription(subscription: any): Observable<any> {
+    // Obtén el token del Local Storage
+    const token = localStorage.getItem('jwtToken');
+
+    // Configura los encabezados con el token
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJEaWF6IiwiZXhwIjoxNzE3MDI5NTAyLCJpYXQiOjE3MTcwMTE1MDJ9.WOLT7suIYb8jXX7QONQ5XDdtjl0-hI8PXyK1Sb6lg0ZD1FCtktxHd0FurFv1sgsy3YAyXEzvQbp_BVrCzu39gA"}`
+    });
+
+    // Realiza la solicitud POST con los encabezados
+    return this.http.post<any>('http://localhost:8080/api/v1/rest/subscription', subscription, { headers });
   }
 
-  getPlan(plan: any): Observable<any>{
-    return this.http.get<any>('http://localhost:8080/api/v1/rest/subscription')
+  getPlan(plan: any): Observable<any> {
+    // Obtén el token del Local Storage
+    const token = localStorage.getItem('jwtToken');
+    
+    // Configura los encabezados con el token
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${"token"}`
+    });
+
+    // Realiza la solicitud GET con los encabezados
+    return this.http.get<any>('http://localhost:8080/api/v1/rest/subscription', { headers });
   }
 
 
