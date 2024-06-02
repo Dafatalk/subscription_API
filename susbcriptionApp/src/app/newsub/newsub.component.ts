@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./newsub.component.css']
 })
 export class NewsubComponent implements OnInit {
+  status: string = '';
   httpResponse:any = null;
   subscription:Subscription = {
     userId : null,
@@ -17,13 +18,14 @@ export class NewsubComponent implements OnInit {
     endDate : null
   }
 
+
   ngOnInit(): void {
     
   }
-  constructor( private subscriptionService:SubscriptionService) {
-    
-  }
-  createNewSub( status:any){
+    constructor( private subscriptionService:SubscriptionService) {
+      
+    }
+  createNewSub( ){
     const startDate = "2024-03-28T06:28:50.833";
     const endDate = "2024-03-28T06:28:50.833";
     const userId="8d82a7dd-dc11-4562-8ef9-bd888213550e";
@@ -32,7 +34,7 @@ export class NewsubComponent implements OnInit {
     const newsubscription:Subscription = {
       userId:userId,
       planId:planId,
-      status:status,
+      status:this.status,
       startDate:startDate,
       endDate:endDate
     }

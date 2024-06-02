@@ -15,8 +15,8 @@
             </select>
           </div>
 		  <p>
-			<label for="phone">Descripción</label>
-			<input #description type="tel" name="telefono" id="phone" class="descripcion">
+			<label for="status">Descripción</label>
+			<input #status type="tel" name="telefono"  id="status" class="descripcion" required="">
 		</p>
 				<div class="orden">
 					<div class="hpta1">
@@ -38,7 +38,7 @@
 			</section>
 			<section id="botones">
 				<p>
-					<button class="save" (click)="createNewSub(description)"> 
+					<button class="save" (click)="createNewSub()"> 
 						Save
 					</button>
 				</p>

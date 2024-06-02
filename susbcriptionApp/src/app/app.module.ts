@@ -10,8 +10,13 @@ import { SubscriptionComponent } from './subscription/subscription.component';
 import { NewsubComponent } from './newsub/newsub.component';
 import { Routes } from '@angular/router';
 import {FormsModule} from "@angular/forms";
-import { AppHttpInterceptor } from './http.interceptor'; // Importa tu interceptor
+import { AppHttpInterceptor } from './http.interceptor'; 
+import { JwtModule } from '@auth0/angular-jwt';
 
+
+export function tokenGetter() {
+  return localStorage.getItem('access_token'); 
+}
 
 const appRoutes: Routes=[
   {path: 'sigin', component: SiginComponent},
@@ -32,7 +37,14 @@ const appRoutes: Routes=[
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['localhost:8080', 'localhost:4200'], // Agrega los dominios permitidos para las solicitudes
+        disallowedRoutes: ['http://example.com/examplebadroute/'], // Rutas que no deben incluir el token
+      },
+    }),
     
   ],
   providers: [

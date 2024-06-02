@@ -1,6 +1,6 @@
 export interface Person{
     name:any;
-    lastname:any;
+    lastName:any;
     mobileNumber:any;
     documentType:any;
     identityDocument:any;

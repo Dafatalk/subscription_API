@@ -24,8 +24,8 @@ import {Observable} from "rxjs";
   constructor(private http: HttpClient) {
 }
 
-    register(user: any , person: any): Observable<any>{
-        return this.http.post<any>('http://localhost:8080/register', user, person)
+    register(userAndPerson: any ): Observable<any>{
+        return this.http.post<any>('http://localhost:8080/register', userAndPerson)
   }
     login(user: any): Observable<any>{
     return this.http.post<any>('http://localhost:8080/authenticate', user)
