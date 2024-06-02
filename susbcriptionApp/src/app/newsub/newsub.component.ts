@@ -1,46 +1,52 @@
-import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'src/models/subscription';
-import { SubscriptionService } from 'src/service/subscription.service';
+import { Component, OnInit, Directive, ElementRef, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
+import { Plan } from 'src/models/plan';
+import { PlanService } from 'src/service/plan.service';
+@Directive({
+  selector: '[numbersOnly]'
+})
+export class NumbersOnlyDirective {
+  constructor(private el: ElementRef) {}
+
+  @HostListener('input', ['$event'])
+  onInputChange(event: Event) {
+      const input = event.target as HTMLInputElement;
+      const value = input.value;
+
+      // Elimina cualquier carácter que no sea un número
+      input.value = value.replace(/[^0-9]/g, '');
+  }
+}
+
 @Component({
   selector: 'app-newsub',
   templateUrl: './newsub.component.html',
   styleUrls: ['./newsub.component.css']
 })
+
 export class NewsubComponent implements OnInit {
-  status: string = '';
   httpResponse:any = null;
-  subscription:Subscription = {
-    userId : null,
-    planId : null,
-    status : null,
-    startDate : null,
-    endDate : null
-  }
+
 
 
   ngOnInit(): void {
     
   }
-    constructor( private subscriptionService:SubscriptionService) {
+    constructor( private planservice:PlanService) {
       
     }
-  createNewSub( ){
-    const startDate = "2024-03-28T06:28:50.833";
-    const endDate = "2024-03-28T06:28:50.833";
-    const userId="8d82a7dd-dc11-4562-8ef9-bd888213550e";
-    const planId = "2aee5629-fd12-4d4c-81ec-8c82e783960c";  
+  createNewPlan(name:any, price:any, period:any, description:any ){
+    console.log(name, price, period, description)
 
-    const newsubscription:Subscription = {
-      userId:userId,
-      planId:planId,
-      status:this.status,
-      startDate:startDate,
-      endDate:endDate
+    const newplan:Plan = {
+      name:name,
+      price:price,
+      period:period,
+      description:description
     }
     
 
-        this.subscriptionService.createSubscription(newsubscription).subscribe(
+        this.planservice.createPlan(newplan).subscribe(
       (response) => {
         // Manejar la respuesta del backend (éxito, error, etc.)
         console.log('Respuesta del backend:', response);

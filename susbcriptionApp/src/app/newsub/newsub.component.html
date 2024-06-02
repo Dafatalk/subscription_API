@@ -1,50 +1,43 @@
-<body>
-	<div class="form" action="" method="POST">
-			<h1>New Subscription</h1>
+<div class="wrapper">
+	<div class="form" >
+			<h1>Create Plan</h1>
 			<section id="preguntas">
 				<p>
-					<label for="name">Name</label>
+					<label for="name">Name:</label>
 					<input #name type="text" name="nombres" id="name">
 				</p>
 				<p>
+					<label for="price">Price ($):</label>
+					<input #price type="number" name="price" id="price" inputmode="numeric"  numbersOnly>
+				</p>
+				<p>
           <div>
-            <label for="select">Plan</label> <p></p>
-            <select id="select" name="select">
-              <option #plan value="opcion1">pobre</option>
+            <label for="select">Period:</label> <p></p>
+            <select #plan id="select" name="select">
+              <option value="Monthly">Monthly</option>
+			  <option  value="Quarterly">Quarterly</option>
+              <option  value="Biannual">Biannual</option>
+              <option  value="Annual">Annual</option>
+
 
             </select>
           </div>
 		  <p>
-			<label for="status">Descripción</label>
-			<input #status type="tel" name="telefono"  id="status" class="descripcion" required="">
+			<label for="status">Description:</label>
+			<input #desciption type="tel" name="telefono"  id="status" class="descripcion" required="">
 		</p>
-				<div class="orden">
-					<div class="hpta1">
-						<label for="birth">Start date</label>
-						<input type="date" name="nacimiento" id="birth">
-					</div> <p> </p>
-					
-					<div class="hpta2">
-						<label for="birth">End date</label>
-						<input type="date" name="nacimiento" id="birth">
-					</div>
 
-				</div>
 				<p>
-
-					
 				</p>
 
 			</section>
 			<section id="botones">
 				<p>
-					<button class="save" (click)="createNewSub()"> 
+					<button class="save" (click)="createNewPlan(name.value, price.value, plan.value, desciption.value)"> 
 						Save
 					</button>
 				</p>
-				<p>
-					<input type="reset">
-				</p>
+
 			</section>
 		</div>
-</body>
+<div>

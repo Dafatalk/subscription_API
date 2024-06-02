@@ -1,6 +1,23 @@
-body{
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+.wrapper{
   font-family:Arial;
   background-color:steelblue;
+  display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh; /* Opcional: para ocupar toda la pantalla */
+	margin: 0 auto;
+
+}
+.wrapper h1{
+	font-size: 300%;
 }
 .form{
 	background-color: white;
