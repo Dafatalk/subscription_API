@@ -29,7 +29,7 @@ import {Observable} from "rxjs";
 
 
     // Realiza la solicitud POST con los encabezados
-    return this.http.post<any>('/api/v1/rest/subscription', plan);
+    return this.http.post<any>('/api/v1/rest/plan', plan);
   }
 
   getPlan(plan: any): Observable<any> {

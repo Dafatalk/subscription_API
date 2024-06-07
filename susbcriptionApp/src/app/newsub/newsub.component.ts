@@ -36,7 +36,6 @@ export class NewsubComponent implements OnInit {
       
     }
   createNewPlan(name:any, price:any, period:any, description:any ){
-    console.log(name, price, period, description)
 
     const newplan:Plan = {
       name:name,
