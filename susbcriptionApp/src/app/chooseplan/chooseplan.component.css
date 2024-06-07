@@ -1,0 +1,100 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.pricing-table {
+  display: flex;
+  justify-content: center; /* Asegura que los elementos se centren horizontalmente */
+  flex-wrap: wrap; /* Permite que los elementos se ajusten según el ancho disponible */
+  align-items: center;
+  margin: 0;
+  padding: 50px 0;
+}
+
+.filter {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+.pricing-table .plan {
+  width: calc(190px); /* Ajusta el ancho para 3 elementos con margen */
+  margin: 10px; /* Añade un margen para separar las tarjetas */
+}
+
+.filter button {
+  background-color: #ddd;
+  color: #333;
+  padding: 10px 20px;
+  margin: 0 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 50px;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.filter button:hover, .filter button.selected {
+  background-color: #000;
+  color: #fff;
+}
+
+.plans {
+  display: flex;
+  justify-content: space-around; /* Añade esto */
+  flex-wrap: wrap; /* Añade esto */
+}
+
+.plan {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin: 0 10px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 5px;
+  width: 300px;
+}
+
+.plan:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.plan h2 {
+  margin: 0;
+  padding: 10px 0;
+  font-size: 24px;
+  color: #5f9ea0;
+}
+
+.plan .price {
+  font-size: 36px;
+  color: #333;
+  margin: 20px 0;
+}
+
+.plan ul {
+  list-style: none;
+  padding: 0;
+}
+
+.plan ul li {
+  padding: 5px 0;
+  border-top: 1px solid #eee;
+}
+
+.plan button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+}

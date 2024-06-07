@@ -1,0 +1,52 @@
+
+<head>
+  <title>Plan</title>
+  <link rel="stylesheet" type="text/css" href="chooseplan.component.css">
+</head>
+<body>
+<div class="pricing-table">
+  <div class="filter">
+    <button id="monthly" class="subscription-period" value="monthly">Monthly</button>
+    <button id="quarterly" class="subscription-period" value="quarterly">Quarterly</button>
+    <button id="semi-annually" class="subscription-period" value="semi-annually">Semi-Annual</button>
+    <button id="annually" class="subscription-period" value="annually">Annual</button>
+  </div>
+
+  <div class="plan" data-prices='{"monthly":9, "quarterly":24, "semi-annually":44, "annually":80}'>
+    <h2>Starter</h2>
+    <p class="price" id="starter-price">$9</p>
+    <ul>
+      <li>1 user</li>
+      <li>5 GB storage</li>
+      <li>Basic support</li>
+    </ul>
+    <button>Get started</button>
+  </div>
+
+  <div class="plan" data-prices='{"monthly":29, "quarterly":79, "semi-annually":149, "annually":279}'>
+    <h2>Pro</h2>
+    <p class="price" id="pro-price">$19</p>
+    <ul>
+      <li>5 user</li>
+      <li>50 GB storage</li>
+      <li>Priority support</li>
+    </ul>
+    <button>Get started</button>
+  </div>
+
+  <div class="plan" data-prices='{"monthly":99, "quarterly":269, "semi-annually":499, "annually":899}'>
+    <h2>Enterprise</h2>
+    <p class="price" id="enterprise-price">$49</p>
+    <ul>
+      <li>Unlimited users</li>
+      <li>Unlimited storage</li>
+      <li>Enterprise support</li>
+    </ul>
+    <button>Get started</button>
+  </div>
+
+
+</div>
+</body>
+
+
