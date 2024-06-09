@@ -1,1 +1,42 @@
-<p>subscription works!</p>
+
+  <body>
+    <table class="rwd-table">
+        <div class="noAnimation">
+
+        <tr>
+          <th>User Id</th>
+          <th>Plan Id</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Status</th>
+
+        </tr>
+        <ng-container *ngFor="let subscription  of subscriptions; let i = index">
+        
+        <tr (click)="rowVisibility[i] = !rowVisibility[i]; getUserAndPerson(subscription.userId)">
+          <td data-th="User Id">{{ subscription.userId }}</td>
+          <td data-th="Plan Id">{{ subscription.planId }}</td>
+          <td data-th="Start Date">{{ subscription.startDate }}</td>
+          <td data-th="End Date">{{ subscription.endDate }}</td>
+          <td data-th="Status">{{ subscription.status }}</td>
+
+        </tr>
+        <div [class.hide]="!rowVisibility[i]" id = "info">
+            <h2>User</h2>
+
+            <p class="price" id="starter-price">$9</p>
+            <ul>
+                <li>1 user</li>
+                <li>5 GB storage</li>
+                <li>Basic support</li>
+            </ul>
+        </div>
+    </ng-container>
+
+           
+    </div> 
+      </table>
+
+  </body>
+
+  

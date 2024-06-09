@@ -1,0 +1,222 @@
+ @import "https://fonts.googleapis.com/css?family=Montserrat:300,400,700";
+ *{
+    padding: 0 0 0;
+ }
+ .rwd-table {
+   margin: 1em 0;
+   min-width: 300px;
+ }
+ .rwd-table tr {
+   border-top: 1px solid #ddd;
+   border-bottom: 1px solid #ddd;
+ }
+ .rwd-table th {
+   display: none;
+ }
+ .rwd-table td {
+   display: block;
+ }
+ .rwd-table td:first-child {
+   padding-top: 0.5em;
+ }
+ .rwd-table td:last-child {
+   padding-bottom: 0.5em;
+ }
+ .rwd-table td:before {
+   content: attr(data-th) ": ";
+   font-weight: bold;
+   width: 6.5em;
+   display: inline-block;
+ }
+ @media (min-width: 480px) {
+   .rwd-table td:before {
+     display: none;
+   }
+ }
+ .rwd-table th,
+ .rwd-table td {
+   text-align: left;
+ }
+ @media (min-width: 480px) {
+   .rwd-table th,
+   .rwd-table td {
+     display: table-cell;
+     padding: 0.25em 0.5em;
+   }
+   .rwd-table th:first-child,
+   .rwd-table td:first-child {
+     padding-left: 0;
+   }
+   .rwd-table th:last-child,
+   .rwd-table td:last-child {
+     padding-right: 0;
+   }
+ }
+ 
+ h1 {
+   font-weight: normal;
+   letter-spacing: -1px;
+   color: #f4f4f4;
+ }
+ 
+ .rwd-table {
+   background: #f4f4f4;
+   color: #fff;
+   border-radius: 0.4em;
+   overflow: hidden;
+   justify-content: center; /* Asegura que los elementos se centren horizontalmente */
+    align-items: center;
+    margin: 0;
+
+ }
+ .rwd-table tr {
+   border-color: #6d7379;
+   background-color: #fff;
+   border: 0px solid #ddd;
+   margin: 0 10px;
+   padding: 20px;
+   text-align: center;
+   transition: transform 0.3s ease-in-out;
+   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+   border-radius: 5px;
+   cursor: pointer;
+ }
+ .noAnimation:hover{
+    transform: scale(1);
+
+ }
+ .rwd-table div{
+
+    border-color: #6d7379;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    width: 100%;
+    cursor: pointer;
+    color: #000;
+    display: flexbox;
+
+ }
+ /**/
+ .rwd-table th,
+ .rwd-table td {
+   margin: 0.5em 1em;
+ }
+ @media (min-width: 480px) {
+   .rwd-table th,
+   .rwd-table td {
+     padding: 1em !important;
+   }
+ }
+ .rwd-table th,
+ .rwd-table td:before {
+   color: rgb(0, 0, 0);
+ }
+ 
+ html,body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Asegura que ocupe toda la altura de la ventana */
+    margin: 0; /* Elimina los márgenes predeterminados */
+  }
+  .hide{
+    display: none;
+  }
+  
+  .pricing-table {
+    display: table-row;
+    justify-content: center; /* Asegura que los elementos se centren horizontalmente */
+    flex-wrap: wrap; /* Permite que los elementos se ajusten según el ancho disponible */
+    align-items: center;
+    margin: 0;
+    padding: 50px 0;
+  }
+  
+  .filter {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    width: 100%;
+  }
+  
+  .pricing-table .plan {
+    width: calc(190px); /* Ajusta el ancho para 3 elementos con margen */
+    margin: 10px; /* Añade un margen para separar las tarjetas */
+  }
+  
+  .filter button {
+    background-color: #ddd;
+    color: #333;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 50px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+  
+  .filter button:hover, .filter button.selected {
+    background-color: #000;
+    color: #fff;
+  }
+  .rwd-table {
+    margin: 1em 0;
+    min-width: 300px; 
+  
+    tr {
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      color: #000;
+    }
+  
+    th {
+      display: none; 
+    }
+}
+  .plans {
+    display: flex;
+    justify-content: space-around; /* Añade esto */
+    flex-wrap: wrap; /* Añade esto */
+  }
+  
+
+  
+  div:hover {
+    transform: scale(1.019);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  .rwd-table h2 {
+    margin: 0;
+    padding: 10px 0;
+    font-size: 24px;
+    color: #5f9ea0;
+  }
+  
+  .rwd-table .price {
+    font-size: 36px;
+    color: #333;
+    margin: 20px 0;
+  }
+  
+  .rwd-table ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .rwd-table ul li {
+    padding: 5px 0;
+    border-top: 1px solid #eee;
+  }
+  
+
+  

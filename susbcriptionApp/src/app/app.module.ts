@@ -12,6 +12,7 @@ import { Routes } from '@angular/router';
 import {FormsModule} from "@angular/forms";
 import { AppHttpInterceptor } from './http.interceptor'; 
 import { JwtModule } from '@auth0/angular-jwt';
+import { ChooseplanComponent } from './chooseplan/chooseplan.component';
 
 
 export function tokenGetter() {
@@ -32,6 +33,7 @@ const appRoutes: Routes=[
     LoginComponent,
     SubscriptionComponent,
     NewsubComponent,
+    ChooseplanComponent
   ],
   imports: [
     BrowserModule,
