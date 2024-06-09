@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chooseplan.component.css']
 })
 export class ChooseplanComponent implements OnInit {
+  plans: any [] = [];
 
   constructor() { }
 
