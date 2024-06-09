@@ -11,20 +11,10 @@
 					<input #price type="number" name="price" id="price" inputmode="numeric"  numbersOnly>
 				</p>
 				<p>
-          <div>
-            <label for="select">Period:</label> <p></p>
-            <select #plan id="select" name="select">
-              <option value="Monthly">Monthly</option>
-			  <option  value="Quarterly">Quarterly</option>
-              <option  value="Biannual">Biannual</option>
-              <option  value="Annual">Annual</option>
 
-
-            </select>
-          </div>
 		  <p>
 			<label for="status">Description:</label>
-			<input #desciption type="tel" name="telefono"  id="status" class="descripcion" required="">
+			<input #description type="tel" name="description"  id="status" class="descripcion" required="">
 		</p>
 
 				<p>
@@ -33,7 +23,7 @@
 			</section>
 			<section id="botones">
 				<p>
-					<button class="save" (click)="createNewPlan(name.value, price.value, plan.value, desciption.value)"> 
+					<button class="save" (click)="createNewPlan(name.value, price.value, description.value)"> 
 						Save
 					</button>
 				</p>

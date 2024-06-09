@@ -35,13 +35,11 @@ export class NewsubComponent implements OnInit {
     constructor( private planservice:PlanService) {
       
     }
-  createNewPlan(name:any, price:any, period:any, description:any ){
-    console.log(name, price, period, description)
+  createNewPlan(name:any, price:any, description:any ){
 
     const newplan:Plan = {
       name:name,
       price:price,
-      period:period,
       description:description
     }
     

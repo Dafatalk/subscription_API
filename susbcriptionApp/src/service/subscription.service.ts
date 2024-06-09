@@ -20,7 +20,8 @@ import {Observable} from "rxjs";
         }
     };
 
-      
+    private baseUrl = '/api/v1/rest/subscription'; // Ajusta la ruta base según tu configuración
+
   constructor(private http: HttpClient) {
 
   } 
@@ -32,11 +33,13 @@ import {Observable} from "rxjs";
     return this.http.post<any>('/api/v1/rest/subscription', subscription);
   }
 
-  getPlan(plan: any): Observable<any> {
+  getsubscription(id:any): Observable<any> {
 
 
     // Realiza la solicitud GET con los encabezados
-    return this.http.get<any>('http://localhost:8080/api/v1/rest/subscription');
+   // return this.http.get<any>('/api/v1/rest/subscription');
+   const url = `${this.baseUrl}?userId=${id}`; // Construye la URL con el ID
+   return this.http.get<any>(url);
   }
 
 

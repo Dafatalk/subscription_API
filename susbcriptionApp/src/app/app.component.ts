@@ -9,3 +9,4 @@ import { NewsubComponent } from './newsub/newsub.component';
 export class AppComponent {
   title = 'susbcriptionApp';
 }
+

@@ -30,6 +30,10 @@ import {Observable} from "rxjs";
     login(user: any): Observable<any>{
     return this.http.post<any>('http://localhost:8080/authenticate', user)
 }
-  
-
+    getOneUser(id:any): Observable<any>{
+      const url = `${"/api/v1/rest/user"}?id=${id}`; // Construye la URL con el ID
+      return this.http.get<any>(url);}
+    getOnePerson(id:any): Observable<any>{
+      const url = `${"/api/v1/rest/person"}?id=${id}`; // Construye la URL con el ID
+      return this.http.get<any>(url);}
   }
