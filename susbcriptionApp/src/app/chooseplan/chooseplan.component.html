@@ -5,46 +5,30 @@
 </head>
 <body>
 <div class="pricing-table">
+
   <div class="filter">
-    <button (click)=" mostrar()" id="monthly" class="subscription-period" value="monthly">Monthly</button>
-    <button id="quarterly" class="subscription-period" value="quarterly">Quarterly</button>
-    <button id="semi-annually" class="subscription-period" value="semi-annually">Semi-Annual</button>
-    <button id="annually" class="subscription-period" value="annually">Annual</button>
+    <button class="subscription-period">asdasdasd</button>
   </div>
 
-  <div class="plan" data-prices='{"monthly":9, "quarterly":24, "semi-annually":44, "annually":80}'>
-    <h2>Starter</h2>
-    <p class="price" id="starter-price">$9</p>
+  <ng-container *ngFor="let period of periods; let i = index">
+  <div class="filter">
+    <button class="subscription-period">{{period.name}}</button>
+  </div>
+  </ng-container>
+
+
+  <ng-container *ngFor="let plan of plans; let i = index">
+  <div class="plan">
+    <h2>{{plan.name}}</h2>
+    <p class="price" id="starter-price">{{plan.price}}</p>
+    <p class="price" id="price-per-month">{{(planObservables[plan.name] | async)?.price}}</p>
+
     <ul>
-      <li>1 user</li>
-      <li>5 GB storage</li>
-      <li>Basic support</li>
+      <li>{{plan.description}}</li>
     </ul>
     <button>Get started</button>
   </div>
-
-  <div class="plan" data-prices='{"monthly":29, "quarterly":79, "semi-annually":149, "annually":279}'>
-    <h2>Pro</h2>
-    <p class="price" id="pro-price">$19</p>
-    <ul>
-      <li>5 user</li>
-      <li>50 GB storage</li>
-      <li>Priority support</li>
-    </ul>
-    <button>Get started</button>
-  </div>
-
-  <div class="plan" data-prices='{"monthly":99, "quarterly":269, "semi-annually":499, "annually":899}'>
-    <h2>Enterprise</h2>
-    <p class="price" id="enterprise-price">$49</p>
-    <ul>
-      <li>Unlimited users</li>
-      <li>Unlimited storage</li>
-      <li>Enterprise support</li>
-    </ul>
-    <button>Get started</button>
-  </div>
-
+  </ng-container>
 
 </div>
 </body>

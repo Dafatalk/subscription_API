@@ -20,10 +20,10 @@ import {Observable} from "rxjs";
         }
     };
 
-      
+
   constructor(private http: HttpClient) {
 
-  } 
+  }
 
   createPlan(plan: any): Observable<any> {
 
@@ -32,11 +32,24 @@ import {Observable} from "rxjs";
     return this.http.post<any>('/api/v1/rest/plan', plan);
   }
 
-  getPlan(): Observable<any> {
-
+  getPlan(period:any): Observable<any> {
 
     // Realiza la solicitud GET con los encabezados
-    return this.http.get<any>('/api/v1/rest/plan/list/annual');
+    // return this.http.get<any>('/api/v1/rest/subscription');
+    const url = `${'/api/v1/rest/plan/list/'}${period}`; // Construye la URL con el ID
+    return this.http.get<any>(url);
+  }
+  getPlanByName(name:any): Observable<any> {
+
+    // Realiza la solicitud GET con los encabezados
+    // return this.http.get<any>('/api/v1/rest/subscription');
+    const url = `${'/api/v1/rest/plan/name/'}${name}`; // Construye la URL con el ID
+    return this.http.get<any>(url);
+  }
+
+
+  getPeriod(): Observable<any> {
+    return this.http.get<any>('/api/v1/rest/period/list');
   }
 
 

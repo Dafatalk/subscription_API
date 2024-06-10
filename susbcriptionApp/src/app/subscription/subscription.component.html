@@ -11,8 +11,8 @@
           <th>Status</th>
 
         </tr>
-        <ng-container *ngFor="let subscription  of subscriptions; let i = index">
-        
+        <ng-container *ngFor="let subscription of subscriptions; let i = index">
+
         <tr (click)="rowVisibility[i] = !rowVisibility[i]; getUserAndPerson(subscription.userId)">
           <td data-th="User Id">{{ subscription.userId }}</td>
           <td data-th="Plan Id">{{ subscription.planId }}</td>
@@ -33,10 +33,9 @@
         </div>
     </ng-container>
 
-           
-    </div> 
+
+    </div>
       </table>
 
   </body>
 
-  
