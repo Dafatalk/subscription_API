@@ -38,6 +38,12 @@ import {Observable} from "rxjs";
     // Realiza la solicitud GET con los encabezados
     return this.http.get<any>('/api/v1/rest/plan/list/annual');
   }
+  getPeriod(): Observable<any> {
+
+
+    // Realiza la solicitud GET con los encabezados
+    return this.http.get<any>('/api/v1/rest/plan/list/annual');
+  }
 
 
 }

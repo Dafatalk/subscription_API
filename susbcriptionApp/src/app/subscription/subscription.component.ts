@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PlanService } from 'src/service/plan.service';
 import { SubscriptionService } from 'src/service/subscription.service';
 import { userService } from 'src/service/user.service';
 
@@ -9,58 +10,57 @@ import { userService } from 'src/service/user.service';
 })
 export class SubscriptionComponent implements OnInit {
 subscriptions: any[] = [];
-  constructor( private subscriptionService:SubscriptionService, private userService:userService) { }
-  infoVisible = false;
+plans: any[] = [];
+
+  constructor( private subscriptionService:SubscriptionService, private planService:PlanService) { }
   public rowVisibility: boolean[] = new Array(this.subscriptions.length).fill(false);
+  collapsedNav = false;
+  activableTab: String ='subscription';
+  collapse(): void {
+    this.collapsedNav = !this.collapsedNav; 
+  }
+  displayTab(): string {
 
-
-  toggleInfo(): void {
-    this.infoVisible = !this.infoVisible;
+    return 'users'; 
+  }
+  changeTab(tab:String){
+    this.activableTab = tab;
+    this.collapsedNav = false;
+ /*   if(this.activableTab == 'plan'){
+      this.getPlans();
+    }
+    if(this.activableTab = 'subscription'){
+      this.getSubscritions();
+    }*/
   }
 
-  getUserAndPerson(id:any){
-        
-    this.userService.getOnePerson(id).subscribe(
-      (response) => {
-        // Manejar la respuesta del backend (éxito, error, etc.)
-        console.log('Respuesta del backend:', response);
-        this.userService.getOneUser(response.id).subscribe(
-          (responseUser) => {
-            // Manejar la respuesta del backend (éxito, error, etc.)
-            console.log('Respuesta del backend:', responseUser);
-    
-          },
-          (error) => {
-            // Manejar errores (por ejemplo, mostrar un mensaje de error al usuario)
-            console.error('Error al traer al usuario:', error);
-          }
-        );
-      },
-      (error) => {
-        // Manejar errores (por ejemplo, mostrar un mensaje de error al usuario)
-        console.error('Error al enviar a la persona:', error);
-      }
-    );
-  }
-  
   ngOnInit(): void {
 this.getSubscritions();
+this.getPlans();
   }
   getSubscritions(){
     
-    this.subscriptionService.getsubscription("8d82a7dd-dc11-4562-8ef9-bd888213550e").subscribe(
+    this.subscriptionService.getsubscription().subscribe(
       (response) => {
-        // Manejar la respuesta del backend (éxito, error, etc.)
         console.log('Respuesta del backend:', response);
-        this.subscriptions = response.map((suscripcion: any) => ({
-          ...suscripcion,
-          infoinvisible: false // Agrega el atributo infoinvisible con valor false
-        }))
-        console.log(this.subscriptions)
+        this.subscriptions = response
 
       },
       (error) => {
-        // Manejar errores (por ejemplo, mostrar un mensaje de error al usuario)
+        console.error('Error al enviar la suscripción:', error);
+      }
+    );
+  }
+
+  getPlans(){
+    
+    this.planService.getPlan().subscribe(
+      (response) => {
+        console.log('Respuesta del backend:', response);
+        this.plans = response
+
+      },
+      (error) => {
         console.error('Error al enviar la suscripción:', error);
       }
     );

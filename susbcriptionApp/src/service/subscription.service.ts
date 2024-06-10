@@ -33,14 +33,10 @@ import {Observable} from "rxjs";
     return this.http.post<any>('/api/v1/rest/subscription', subscription);
   }
 
-  getsubscription(id:any): Observable<any> {
+  getsubscription(): Observable<any> {
+    return this.http.get<any>('/api/v1/rest/subscription');
 
 
-    // Realiza la solicitud GET con los encabezados
-   // return this.http.get<any>('/api/v1/rest/subscription');
-   const url = `${this.baseUrl}?userId=${id}`; // Construye la URL con el ID
-   return this.http.get<any>(url);
+
   }
-
-
 }
