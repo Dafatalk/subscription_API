@@ -9,14 +9,14 @@ import { LoginComponent } from './login/login.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { NewsubComponent } from './newsub/newsub.component';
 import { Routes } from '@angular/router';
-import {FormsModule} from "@angular/forms";
-import { AppHttpInterceptor } from './http.interceptor'; 
+import { FormsModule} from "@angular/forms";
+import { AppHttpInterceptor } from './http.interceptor';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ChooseplanComponent } from './chooseplan/chooseplan.component';
 
 
 export function tokenGetter() {
-  return localStorage.getItem('access_token'); 
+  return localStorage.getItem('access_token');
 }
 
 const appRoutes: Routes=[
@@ -47,7 +47,7 @@ const appRoutes: Routes=[
         disallowedRoutes: ['http://example.com/examplebadroute/'], // Rutas que no deben incluir el token
       },
     }),
-    
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true }

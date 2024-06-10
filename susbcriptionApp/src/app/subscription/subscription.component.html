@@ -59,6 +59,7 @@
             <th>description</th>
 
 
+<<<<<<< HEAD
           </tr>
           <ng-container *ngFor="let plan  of plans; let i = index">
         
@@ -67,6 +68,17 @@
               <td data-th="Price">{{ plan.price }}</td>
               <td data-th="Description">{{ plan.description }}</td>
           </ng-container>
+=======
+        </tr>
+        <ng-container *ngFor="let subscription of subscriptions; let i = index">
+
+        <tr (click)="rowVisibility[i] = !rowVisibility[i]; getUserAndPerson(subscription.userId)">
+          <td data-th="User Id">{{ subscription.userId }}</td>
+          <td data-th="Plan Id">{{ subscription.planId }}</td>
+          <td data-th="Start Date">{{ subscription.startDate }}</td>
+          <td data-th="End Date">{{ subscription.endDate }}</td>
+          <td data-th="Status">{{ subscription.status }}</td>
+>>>>>>> gallermo
 
            
         </div> 
@@ -97,4 +109,16 @@
                 <li>5 GB storage</li>
                 <li>Basic support</li>
             </ul>
+<<<<<<< HEAD
         </div> -->
+=======
+        </div>
+    </ng-container>
+
+
+    </div>
+      </table>
+
+  </body>
+
+>>>>>>> gallermo
