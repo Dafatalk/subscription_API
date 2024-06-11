@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-@Component({
+
+
+
+@Component({  
   selector: 'app-userplan',
   templateUrl: './userplan.component.html',
   styleUrls: ['./userplan.component.css']
@@ -11,5 +14,6 @@ export class UserplanComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
 
 }

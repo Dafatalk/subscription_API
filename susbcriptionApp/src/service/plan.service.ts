@@ -46,12 +46,6 @@ import {Observable} from "rxjs";
     const url = `${'/api/v1/rest/plan/name/'}${name}`; // Construye la URL con el ID
     return this.http.get<any>(url);
   }
-  getPeriod(): Observable<any> {
-
-
-    // Realiza la solicitud GET con los encabezados
-    return this.http.get<any>('/api/v1/rest/plan/list/annual');
-  }
 
 
   getPeriod(): Observable<any> {

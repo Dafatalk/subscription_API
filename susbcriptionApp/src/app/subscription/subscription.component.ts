@@ -2,48 +2,70 @@ import { Component, OnInit } from '@angular/core';
 import { PlanService } from 'src/service/plan.service';
 import { SubscriptionService } from 'src/service/subscription.service';
 import { userService } from 'src/service/user.service';
-
+import {AfterViewInit, ViewChild} from '@angular/core';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { MatSort, Sort } from '@angular/material/sort';
+import {LiveAnnouncer} from '@angular/cdk/a11y';
+import { Period } from 'src/models/period';
+import { Subscription } from 'src/models/subscription';
+import { Plan } from 'src/models/plan';
 @Component({
   selector: 'app-subscription',
   templateUrl: './subscription.component.html',
   styleUrls: ['./subscription.component.css']
 })
-export class SubscriptionComponent implements OnInit {
-subscriptions: any[] = [];
-plans: any[] = [];
+export class SubscriptionComponent implements OnInit, AfterViewInit  {
+  /** matricez que se usan para guardar los datos del endpoint */
+subscriptions: Subscription[] = [];
+plans: Plan[] = [];
+periods: Period [] = [];
+/**variables que uso para la tabla buena */
+dataSource = new MatTableDataSource ();
+displayedColumns: string[] = [];
+@ViewChild(MatSort) sort!: MatSort;
 
-  constructor( private subscriptionService:SubscriptionService, private planService:PlanService) { }
-  public rowVisibility: boolean[] = new Array(this.subscriptions.length).fill(false);
+  /** configuración de la barra de navegación */
   collapsedNav = false;
-  activableTab: String ='subscription';
+  activableTab: String ='plan';
   collapse(): void {
     this.collapsedNav = !this.collapsedNav; 
-  }
-  displayTab(): string {
-
-    return 'users'; 
   }
   changeTab(tab:String){
     this.activableTab = tab;
     this.collapsedNav = false;
- /*   if(this.activableTab == 'plan'){
-      this.getPlans();
-    }
-    if(this.activableTab = 'subscription'){
-      this.getSubscritions();
-    }*/
+    this.updateTableData();
   }
 
+  constructor(
+    private subscriptionService:SubscriptionService,
+    private planService:PlanService,
+    private _liveAnnouncer: LiveAnnouncer
+  ) { }
+
   ngOnInit(): void {
-this.getSubscritions();
-this.getPlans();
-  }
+    this.getSubscritions();
+    this.getPlans();
+    this.getPeriod();
+    this.updateTableData();
+
+      }
+
+
+  /**funciones que traen los datos de los endpoints y los almacenan */
+  
   getSubscritions(){
     
     this.subscriptionService.getsubscription().subscribe(
+      
       (response) => {
         console.log('Respuesta del backend:', response);
         this.subscriptions = response
+        if (this.activableTab === 'subscription') {
+          this.dataSource.data = this.subscriptions;
+          this.displayedColumns = ['name', 'planName', 'startDate', 'endDate', 'period', 'status'];
+          console.log("estamos AQUI y sí entró", this.displayedColumns)
+
+        }
 
       },
       (error) => {
@@ -51,19 +73,76 @@ this.getPlans();
       }
     );
   }
-
   getPlans(){
     
-    this.planService.getPlan().subscribe(
+    this.planService.getPlan('monthly').subscribe(
       (response) => {
         console.log('Respuesta del backend:', response);
         this.plans = response
+        if (this.activableTab === 'plan') {
+          this.dataSource.data = this.plans;
+          this.displayedColumns = ['namePlan', 'price', 'description'];
+          console.log("estamos AQUI y sí entró", this.displayedColumns)
 
+        }
       },
       (error) => {
         console.error('Error al enviar la suscripción:', error);
       }
     );
+  }
+  getPeriod(){
+    this.planService.getPeriod().subscribe(
+      (response) => {
+        // Manejar la respuesta del backend (éxito, error, etc.)
+        console.log('Respuesta del backend de los periodos:', response);
+        this.periods = response
+        if (this.activableTab === 'period') {
+          this.dataSource.data = this.periods;
+          this.displayedColumns = [ 'name', 'discount', 'month'];
+        }
+      },
+      (error) => {
+        // Manejar errores (por ejemplo, mostrar un mensaje de error al usuario)
+        console.error('Error al enviar la suscripción:', error);
+      }
+    );
+  }
+
+
+  /* TABLAS DE MATERIAL */ 
+  
+
+
+
+
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort; 
+
+  }
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
+  updateTableData(): void {
+    switch (this.activableTab) {
+      case 'subscription':
+        this.dataSource.data = this.subscriptions;
+        this.displayedColumns = [ 'name', 'planName', 'startDate', 'endDate', 'period', 'status'];
+        break;
+      case 'plan':
+        this.dataSource.data = this.plans;
+        this.displayedColumns = ['nameplan', 'price', 'description'];
+        break;
+      case 'period':
+        this.dataSource.data = this.periods;
+        this.displayedColumns = ['name', 'discount', 'month'];
+        break;
+    }
   }
 
 }

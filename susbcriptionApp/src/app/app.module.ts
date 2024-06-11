@@ -13,6 +13,11 @@ import { FormsModule} from "@angular/forms";
 import { AppHttpInterceptor } from './http.interceptor';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ChooseplanComponent } from './chooseplan/chooseplan.component';
+import { UserplanComponent } from './userplan/userplan.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 export function tokenGetter() {
@@ -33,7 +38,8 @@ const appRoutes: Routes=[
     LoginComponent,
     SubscriptionComponent,
     NewsubComponent,
-    ChooseplanComponent
+    ChooseplanComponent,
+    UserplanComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +53,10 @@ const appRoutes: Routes=[
         disallowedRoutes: ['http://example.com/examplebadroute/'], // Rutas que no deben incluir el token
       },
     }),
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
 
   ],
   providers: [

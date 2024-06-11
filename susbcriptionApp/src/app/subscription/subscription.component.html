@@ -19,69 +19,76 @@
   <section class="panel-content" [class.collapsed]="collapsedNav">
     <!-- SUBSCRIPTION TABLE -->
     <ng-container *ngIf="activableTab === 'subscription'">
-        <table class="rwd-table">
-            <div class="noAnimation">
-              <tr>
-                <th>User</th>
-                <th>Plan</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Period</th>
-                <th>Status</th>
-    
-              </tr>
-              <ng-container *ngFor="let subscription  of subscriptions; let i = index">
-            
-                <tr style="width: 100%;" >
-                  <td data-th="User">{{ subscription.firstName }} {{ subscription.lastName }}</td>
-                  <td data-th="Plan">{{ subscription.planName }}</td>
-                  <td data-th="Start Date">{{ subscription.startDate }}</td>
-                  <td data-th="End Date">{{ subscription.endDate }}</td>
-                  <td  data-th="Period">{{ subscription.period }}</td>
-                  <td  data-th="Status">{{ subscription.status }}</td>
-                </tr>
-              </ng-container>
-    
-               
-            </div> 
-          </table>
-    
+      <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.firstName
+          }} {{element.lastName
+          }} </td>
+        </ng-container>
+
+        <!-- Plan Column -->
+        <ng-container matColumnDef="planName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by plan"> Plan </th>
+          <td mat-cell *matCellDef="let element"> {{element.planName}} </td>
+        </ng-container>
+
+        <!-- Start Date Column -->
+        <ng-container matColumnDef="startDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by start date"> Start date </th>
+          <td mat-cell *matCellDef="let element"> {{element.startDate | date}} </td>
+        </ng-container>
+
+        <!-- End Date Column -->
+        <ng-container matColumnDef="endDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by end date"> End date </th>
+          <td mat-cell *matCellDef="let element"> {{element.endDate | date}} </td>
+        </ng-container>
+
+        <!-- Period Column -->
+        <ng-container matColumnDef="period">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by period"> Period </th>
+          <td mat-cell *matCellDef="let element"> {{element.period}} </td>
+        </ng-container>
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by status"> Status </th>
+          <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+     
     </ng-container>
      <!-- SUBSCRIPTION TABLE -->
       
      <!-- PLAN TABLE -->
     <ng-container *ngIf="activableTab === 'plan'">
-      <table class="rwd-table">
-        <div class="noAnimation">
-          <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>description</th>
+      <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="namePlan">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by namePlan"> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Plan Column -->
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by price"> price </th>
+          <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+        </ng-container>
+
+        <!-- Start Date Column -->
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by description"> description </th>
+          <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
 
 
-<<<<<<< HEAD
-          </tr>
-          <ng-container *ngFor="let plan  of plans; let i = index">
-        
-            <tr style="width: 100%;" >
-              <td data-th="name">{{ plan.name }}</td>
-              <td data-th="Price">{{ plan.price }}</td>
-              <td data-th="Description">{{ plan.description }}</td>
-          </ng-container>
-=======
-        </tr>
-        <ng-container *ngFor="let subscription of subscriptions; let i = index">
-
-        <tr (click)="rowVisibility[i] = !rowVisibility[i]; getUserAndPerson(subscription.userId)">
-          <td data-th="User Id">{{ subscription.userId }}</td>
-          <td data-th="Plan Id">{{ subscription.planId }}</td>
-          <td data-th="Start Date">{{ subscription.startDate }}</td>
-          <td data-th="End Date">{{ subscription.endDate }}</td>
-          <td data-th="Status">{{ subscription.status }}</td>
->>>>>>> gallermo
-
-           
-        </div> 
       </table>
     </ng-container>
    <!-- PLAN TABLE -->
@@ -90,7 +97,38 @@
 
     <ng-container *ngIf="activableTab === 'period'">
 
-      
+      <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+      class="mat-elevation-z8">
+
+
+ <!-- Name Column -->
+ <ng-container matColumnDef="name">
+   <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+     Name
+   </th>
+   <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+ </ng-container>
+
+ <!-- Weight Column -->
+ <ng-container matColumnDef="discount">
+   <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by discount">
+     Discount
+   </th>
+   <td mat-cell *matCellDef="let element"> {{element.discount}} </td>
+ </ng-container>
+
+ <!-- Symbol Column -->
+ <ng-container matColumnDef="month">
+   <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by month">
+     Month
+   </th>
+   <td mat-cell *matCellDef="let element"> {{element.month} </td>
+ </ng-container>
+
+ <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+ <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
     </ng-container>
    <!-- PERIOD TABLE -->
 
@@ -99,26 +137,3 @@
 </div>
 </div>
 
-
-          <!-- <div [class.hide]="!rowVisibility[i]" id = "info">
-            <h2>User</h2>
-
-            <p class="price" id="starter-price">$9</p>
-            <ul>
-                <li>1 user</li>
-                <li>5 GB storage</li>
-                <li>Basic support</li>
-            </ul>
-<<<<<<< HEAD
-        </div> -->
-=======
-        </div>
-    </ng-container>
-
-
-    </div>
-      </table>
-
-  </body>
-
->>>>>>> gallermo

@@ -1,6 +1,8 @@
 export interface Subscription{
-    userId:any;
-    planId:any;
+    firstName:any;
+    lastName:any
+    planDate:any;
+    period:any;
     status:any;
     startDate:any;
     endDate:any;
