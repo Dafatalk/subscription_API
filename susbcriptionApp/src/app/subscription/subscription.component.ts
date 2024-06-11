@@ -20,13 +20,16 @@ subscriptions: Subscription[] = [];
 plans: Plan[] = [];
 periods: Period [] = [];
 /**variables que uso para la tabla buena */
-dataSource = new MatTableDataSource ();
+subscriptionDataSource = new MatTableDataSource ();
+plansDataSource = new MatTableDataSource ();
+periodDataSource = new MatTableDataSource ();
+
 displayedColumns: string[] = [];
 @ViewChild(MatSort) sort!: MatSort;
 
   /** configuración de la barra de navegación */
   collapsedNav = false;
-  activableTab: String ='plan';
+  activableTab: String ='subscription';
   collapse(): void {
     this.collapsedNav = !this.collapsedNav; 
   }
@@ -61,9 +64,9 @@ displayedColumns: string[] = [];
         console.log('Respuesta del backend:', response);
         this.subscriptions = response
         if (this.activableTab === 'subscription') {
-          this.dataSource.data = this.subscriptions;
+          this.subscriptionDataSource.data = this.subscriptions;
           this.displayedColumns = ['name', 'planName', 'startDate', 'endDate', 'period', 'status'];
-          console.log("estamos AQUI y sí entró", this.displayedColumns)
+          console.log("estamos AQUI y sí entró", this.subscriptionDataSource)
 
         }
 
@@ -80,9 +83,9 @@ displayedColumns: string[] = [];
         console.log('Respuesta del backend:', response);
         this.plans = response
         if (this.activableTab === 'plan') {
-          this.dataSource.data = this.plans;
+          this.plansDataSource.data = this.plans;
           this.displayedColumns = ['namePlan', 'price', 'description'];
-          console.log("estamos AQUI y sí entró", this.displayedColumns)
+          console.log("estamos AQUI y sí entró", this.plansDataSource)
 
         }
       },
@@ -98,8 +101,8 @@ displayedColumns: string[] = [];
         console.log('Respuesta del backend de los periodos:', response);
         this.periods = response
         if (this.activableTab === 'period') {
-          this.dataSource.data = this.periods;
-          this.displayedColumns = [ 'name', 'discount', 'month'];
+          this.periodDataSource.data = this.periods;
+          this.displayedColumns = ['name', 'discount', 'month'];
         }
       },
       (error) => {
@@ -118,7 +121,10 @@ displayedColumns: string[] = [];
 
 
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort; 
+    this.subscriptionDataSource.sort = this.sort; 
+    this.plansDataSource.sort = this.sort; 
+    this.periodDataSource.sort = this.sort; 
+
 
   }
   announceSortChange(sortState: Sort) {
@@ -131,15 +137,15 @@ displayedColumns: string[] = [];
   updateTableData(): void {
     switch (this.activableTab) {
       case 'subscription':
-        this.dataSource.data = this.subscriptions;
+        this.subscriptionDataSource.data = this.subscriptions;
         this.displayedColumns = [ 'name', 'planName', 'startDate', 'endDate', 'period', 'status'];
         break;
       case 'plan':
-        this.dataSource.data = this.plans;
+        this.plansDataSource.data = this.plans;
         this.displayedColumns = ['nameplan', 'price', 'description'];
         break;
       case 'period':
-        this.dataSource.data = this.periods;
+        this.periodDataSource.data = this.periods;
         this.displayedColumns = ['name', 'discount', 'month'];
         break;
     }

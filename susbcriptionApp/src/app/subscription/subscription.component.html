@@ -19,7 +19,7 @@
   <section class="panel-content" [class.collapsed]="collapsedNav">
     <!-- SUBSCRIPTION TABLE -->
     <ng-container *ngIf="activableTab === 'subscription'">
-      <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
+      <table mat-table [dataSource]="subscriptionDataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
 
         <!-- Name Column -->
         <ng-container matColumnDef="name">
@@ -68,7 +68,7 @@
       
      <!-- PLAN TABLE -->
     <ng-container *ngIf="activableTab === 'plan'">
-      <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
+      <table mat-table [dataSource]="plansDataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
 
         <!-- Name Column -->
         <ng-container matColumnDef="namePlan">
@@ -97,7 +97,7 @@
 
     <ng-container *ngIf="activableTab === 'period'">
 
-      <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+      <table mat-table [dataSource]="periodDataSource" matSort (matSortChange)="announceSortChange($event)"
       class="mat-elevation-z8">
 
 
