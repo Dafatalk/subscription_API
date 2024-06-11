@@ -38,7 +38,7 @@ body {
 }
 
 .filter button:hover, .filter button.selected {
-  background-color: #000;
+  background-color: #640E81;
   color: #fff;
 }
 
@@ -70,7 +70,7 @@ body {
   margin: 0;
   padding: 10px 0;
   font-size: 24px;
-  color: #5f9ea0;
+  color: #640E81;
 }
 
 .plan .price {
@@ -98,4 +98,14 @@ body {
   cursor: pointer;
   border-radius: 5px;
   margin-top: 20px;
+}
+
+.periodButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.subButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
