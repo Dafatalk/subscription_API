@@ -2,21 +2,32 @@ import { Component, OnInit } from '@angular/core';
 import { PlanService } from 'src/service/plan.service';
 import {Observable} from "rxjs";
 
+export interface Period {
+  name: string;
+  discount: number;
+  months: number;
+}
+
 @Component({
   selector: 'app-chooseplan',
   templateUrl: './chooseplan.component.html',
   styleUrls: ['./chooseplan.component.css']
 })
+
 export class ChooseplanComponent implements OnInit {
   plans: any [] = [];
   periods: any [] = [];
-  monthly: any
+  period: Period = {
+    name: "monthly",
+    discount: 0,
+    months: 1
+  }
   planObservables: { [name: string]: Observable<any> } = {};
 
   constructor(private planservice:PlanService) { }
 
   ngOnInit(): void {
-    this.mostrar()
+    this.mostrar(this.period)
     this.getPeriod()
     this.createPlanObservables();
   }
@@ -26,48 +37,16 @@ export class ChooseplanComponent implements OnInit {
     }
   }
 
-  mostrar(){
-    this.planservice.getPlan('annual').subscribe(
+  mostrar(period: any){
+    this.planservice.getPlan(period.name).subscribe(
       (response) => {
-        // Manejar la respuesta del backend (éxito, error, etc.)
-        console.log('Respuesta del backend:', response);
         this.plans = response
-        this.planservice.getPlanByName('Premium').subscribe(
-          (response1) => {
-            // Manejar la respuesta del backend (éxito, error, etc.)
-            console.log('Respuesta del backend:', response1);
-            this.plans = this.plans.map((plan: any) =>({
-              ...plan,
-              priceMonth: response1.price
-            }))
-            console.log(this.plans)
-          },
-          (error) => {
-            // Manejar errores (por ejemplo, mostrar un mensaje de error al usuario)
-            console.error('23Error al enviar la suscripción:', error);
-          }
-        );
+        this.setPeriod(period)
       },
       (error) => {
-        // Manejar errores (por ejemplo, mostrar un mensaje de error al usuario)
-        console.error('23Error al enviar la suscripción:', error);
+        console.error(error);
       }
     );
-  }
-
-  getPlanByName(name:any): any{
-    this.planservice.getPlanByName(name).subscribe(
-      (response) => {
-        // Manejar la respuesta del backend (éxito, error, etc.)
-        console.log('Respuesta del backend:', response);
-        return response.price
-      },
-      (error) => {
-        // Manejar errores (por ejemplo, mostrar un mensaje de error al usuario)
-        console.error('23Error al enviar la suscripción:', error);
-      }
-    );
-
   }
 
   getPeriod(){
@@ -82,6 +61,10 @@ export class ChooseplanComponent implements OnInit {
         console.error('Error al enviar la suscripción:', error);
       }
     );
+  }
+
+  setPeriod(period: any): void {
+    this.period = period
   }
 
   protected readonly name = name;
