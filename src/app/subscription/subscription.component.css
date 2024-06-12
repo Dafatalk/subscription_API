@@ -31,19 +31,21 @@ th.mat-sort-header-sorted {
   }
   
   .panel-container {
+    display: flex;
     position: absolute;
     top: 0px;
     bottom: 0px;
     left: 0px;
     right: 0px;
     background-color: #f4f4f4;
+    height: 100%;
   }
   
   .panel-controls {
     float: left;
     width: 175px;
     background-color: #111010;
-    height: 100%;
+    height: 97.5%;
     font-size: 14px;
     padding: 10px 0;
     -webkit-user-select: none;
@@ -141,12 +143,20 @@ th.mat-sort-header-sorted {
     left: 30px;
   }
   
+  .panel-content{
+    flex: 1;
+    padding: 10px;
+    background-color: #f4f4f4; /* Color de fondo gris */
+    overflow: auto; /* Permite el scroll si el contenido es muy largo */
+  }
+
+
   section.panel-content {
-    height: 100%;
     -webkit-transition: margin-left 0.3s;
     -moz-transition: margin-left 0.3s;
     -ms-transition: margin-left 0.3s;
     transition: margin-left 0.3s;
+    
   }
   
   section.panel-content .main-wrapper {
@@ -331,3 +341,113 @@ th.mat-sort-header-sorted {
 .bs-callout-danger h4 {
   color: #d9534f;
 }
+/* BOTON MENU */
+
+.panel-controls.collapsed li.nav-control i .btn .text {
+  color: #000;
+display: none;  
+
+}
+.panel-controls.collapsed li.nav-control i .btn .icon:hover{
+  color: #000;
+  transition: 0.5 ease-in-out;
+  width: 70px;
+
+}
+.btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  border: none;
+  transition: all 0.5s ease-in-out;
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 200;
+  display: flex;
+  align-items: center;
+  background: #040f16;
+  color: #f5f5f5;
+  cursor: pointer;
+}
+
+.btn:hover {
+  box-shadow: 0 0 20px 0px #2e2e2e3a;
+}
+
+.btn .icon {
+  position: absolute;
+  height: 40px;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+}
+
+.btn .text {
+  transform: translateX(55px);
+}
+
+.btn:hover .icon {
+  width: 175px;
+}
+
+.btn:hover .text {
+  transition: all 0.5s;
+  opacity: 0;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:active .icon {
+  transform: scale(0.85);
+}
+
+/* BOTON DE CREAR */
+
+.btnCrear {
+  top: 85%; /* Margen inferior relativo al viewport */
+  left: 90%;  /* Margen derecho relativo al viewport */
+  position: fixed;
+  width: 4.5em;
+  height: 2.3em;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 0.9em;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: 1 ease-in-out;
+
+ }
+ 
+ .btnCrear:hover {
+  color: black;
+ }
+ 
+ .btnCrear:after {
+  content: "";
+  background: white;
+  position: absolute;
+  z-index: -1;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s;
+ }
+ 
+ .btnCrear:hover:after {
+  transform: skewX(-45deg) scale(1, 1);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+ }

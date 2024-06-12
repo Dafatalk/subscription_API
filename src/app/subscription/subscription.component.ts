@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PlanService } from 'src/service/plan.service';
 import { SubscriptionService } from 'src/service/subscription.service';
 import { MatDialog } from '@angular/material/dialog';
-import {AfterViewInit, ViewChild} from '@angular/core';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import {AfterViewInit} from '@angular/core';
+import {MatTableDataSource} from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import { Period } from 'src/models/period';
@@ -12,6 +12,8 @@ import { Plan } from 'src/models/plan';
 import { EditPlanComponent } from '../edit-plan/edit-plan.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EditPeriodComponent } from '../edit-period/edit-period.component';
+import { NewperiodComponent } from '../newperiod/newperiod.component';
+import { NewplanComponent } from '../newplan/newplan.component';
 
 
 @Component({
@@ -48,6 +50,18 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
   collapse(): void {
     this.collapsedNav = !this.collapsedNav;
   }
+  NoButton(){
+    const btnCrear = document.getElementById('btnCrear');
+
+    if(this.activableTab == "subscription" && btnCrear){
+      btnCrear.style.display = 'none';
+
+    }
+    if(btnCrear && this.activableTab != 'subscription'){
+      btnCrear.style.display = 'flex';
+
+    }
+  }
   changeTab(tab: String): void {
     this.activableTab = tab;
     this.collapsedNav = false;
@@ -55,7 +69,9 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
     const sub = document.getElementById('subsli');
     const plan = document.getElementById('planli');
     const period = document.getElementById('periodli');
+    this.NoButton()
 
+  
     if (sub && plan && period) {
       // Reiniciar el color de todas las pestañas
       sub.style.color = '#ffffff';
@@ -86,6 +102,7 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
     this.getPlans();
     this.getPeriod();
     this.updateTableData();
+    this.NoButton()
   }
 
 
@@ -233,13 +250,14 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
       data: element
     });
     dialogRef.afterClosed().subscribe(result => {
-      if(result.data.closeReason){
+      if(result.data.closeReason  ){
         console.log("closed correctly")
       }
       else if (result.success) {
+        console.log("LO DEL CLOSEEE" ,result.data.closeReason)
         this.elementoAEditar = result.data.name
         this.mostrarMensajeExitoEdit = true;
-
+        result.data.closeReason = false;
         setTimeout(() => {
           this.mostrarMensajeExitoEdit = false;
         }, 5000); // 5000 ms = 5 segu
@@ -249,7 +267,7 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
         console.error('Ocurrió un error:', result.error);
         this.elementoAEditar = result.error
         this.mostrarMensajeErrorEdit = true;
-
+        result.data.closeReason = false;
         setTimeout(() => {
           this.mostrarMensajeErrorEdit = false;
 
@@ -279,7 +297,7 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
       else if (result.success) {
         this.elementoAEditar = result.data.name
         this.mostrarMensajeExitoEdit = true;
-
+        result.data.closeReason = false;
         setTimeout(() => {
           this.mostrarMensajeExitoEdit = false;
         }, 5000); // 5000 ms = 5 segu
@@ -289,7 +307,83 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
         // Manejar el caso de error
         this.elementoAEditar = result.error
         this.mostrarMensajeErrorEdit = true;
+        result.data.closeReason = false;
+        setTimeout(() => {
+          this.mostrarMensajeErrorEdit = false;
 
+        }, 5000); // 5000 ms = 5 segu
+      }
+    }, error => {
+      this.elementoAEditar = error
+      setTimeout(() => {
+        this.mostrarMensajeError = true;
+      }, 5000); // 5000 ms = 5 segu
+      console.error('Ocurrió un error al cerrar el diálogo:', error);
+    });
+  }
+  createPeriod(): void {
+    const dialogRef = this.dialog.open(NewperiodComponent, {
+      width: '30%',
+      height: '90%',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.data.closeReason){
+        console.log("closed correctly")
+      }
+
+
+      else if (result.success) {
+        this.elementoAEditar = result.data.name
+        this.mostrarMensajeExitoEdit = true;
+        result.data.closeReason = false;
+        setTimeout(() => {
+          this.mostrarMensajeExitoEdit = false;
+        }, 5000); // 5000 ms = 5 segu
+
+
+      } else {
+        // Manejar el caso de error
+        this.elementoAEditar = result.error
+        this.mostrarMensajeErrorEdit = true;
+        result.data.closeReason = false;
+        setTimeout(() => {
+          this.mostrarMensajeErrorEdit = false;
+
+        }, 5000); // 5000 ms = 5 segu
+      }
+    }, error => {
+      this.elementoAEditar = error
+      setTimeout(() => {
+        this.mostrarMensajeError = true;
+      }, 5000); // 5000 ms = 5 segu
+      console.error('Ocurrió un error al cerrar el diálogo:', error);
+    });
+  }
+  createPlan(): void {
+    const dialogRef = this.dialog.open(NewplanComponent, {
+      width: '30%',
+      height: '90%',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.data.closeReason){
+        console.log("closed correctly")
+      }
+
+
+      else if (result.success) {
+        this.elementoAEditar = result.data.name
+        this.mostrarMensajeExitoEdit = true;
+        result.data.closeReason = false;
+        setTimeout(() => {
+          this.mostrarMensajeExitoEdit = false;
+        }, 5000); // 5000 ms = 5 segu
+
+
+      } else {
+        // Manejar el caso de error
+        this.elementoAEditar = result.error
+        this.mostrarMensajeErrorEdit = true;
+        result.data.closeReason = false;
         setTimeout(() => {
           this.mostrarMensajeErrorEdit = false;
 
@@ -304,5 +398,13 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
     });
   }
 
-  
+  createany(){
+
+    if(this.activableTab == 'plan'){
+      this.createPlan()
+    }
+    if(this.activableTab == 'period'){
+      this.createPeriod()
+    }
+  }
 }

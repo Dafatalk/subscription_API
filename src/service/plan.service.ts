@@ -33,7 +33,12 @@ import { Period } from 'src/models/period';
     // Realiza la solicitud POST con los encabezados
     return this.http.post<any>('/api/v1/rest/plan', plan);
   }
+  createPeriod(period: any): Observable<any> {
 
+
+    // Realiza la solicitud POST con los encabezados
+    return this.http.post<any>('/api/v1/rest/period', period);
+  }
   getPlan(period:any): Observable<any> {
 
     const url = `${'/api/v1/rest/plan/list/'}${period}`;

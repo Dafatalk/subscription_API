@@ -21,7 +21,7 @@ export class EditPeriodComponent implements OnInit {
     const updateData = { ...this.data, closeReason: this.closeReason };
     this.dialogRef.close({ success: false, data: updateData });
   }
-  editPeriod(id:any ,name:any , discount:any, months  :any){
+  editPeriod(id:any ,name:any , discount:any, months:any){
 
     const newPeriod:any = {
       id:id,
@@ -34,12 +34,12 @@ export class EditPeriodComponent implements OnInit {
     this.planservice.editPeriod(newPeriod).subscribe(
       (response) => {
         this.dialogRef.close({success: true, data:updateData})
-        console.log('Respuesta del backend DE EDITAR UN PLAN:', response);
+        console.log('Respuesta del backend DE EDITAR UN PERIODO:', response);
       },
       (error) => {
-        this.dialogRef.close({success: false, error: "error al editar el plan"})
+        this.dialogRef.close({success: false, error: "error al EDITAR el PERIODO"})
 
-        console.error('Error al enviar la suscripción:', error);
+        console.error('Error al enviar la periodo:', error);
       }
     );
   }
