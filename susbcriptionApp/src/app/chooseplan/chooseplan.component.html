@@ -17,7 +17,7 @@
   <ng-container *ngFor="let plan of plans; let i = index">
     <div class="plan">
       <h2>{{ plan.name.toUpperCase() }}</h2>
-      <p class="price" id="starter-price">${{ plan.price * period.months }}</p>
+      <p class="price" id="starter-price">${{ plan.price * period.months | number:'1.2-2'}}</p>
       <p id="price-per-month">${{ plan.price }}/Month</p>
 
       <ul style="height: 70px">
