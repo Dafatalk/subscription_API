@@ -22,6 +22,9 @@ import { EditPlanComponent } from './edit-plan/edit-plan.component';
 import { EditPeriodComponent } from './edit-period/edit-period.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UsersubComponent } from './usersub/usersub.component';
+import { HeaderbarComponent } from './util/headerbar/headerbar.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatIconModule} from "@angular/material/icon";
 
 
 export function tokenGetter() {
@@ -46,7 +49,8 @@ const appRoutes: Routes=[
     EditPlanComponent,
     EditPeriodComponent,
     ChooseplanComponent,
-    UsersubComponent
+    UsersubComponent,
+    HeaderbarComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +69,8 @@ const appRoutes: Routes=[
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
+    MatToolbarModule,
+    MatIconModule,
 
   ],
   providers: [
