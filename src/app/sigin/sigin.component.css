@@ -1,5 +1,5 @@
 body {
-  background-color: steelblue;
+  background-color: #b1b1b1;
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
@@ -26,7 +26,7 @@ body {
 }
 
 .form-group input {
-  width: 100%;
+  width: 90%;
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -49,7 +49,7 @@ body {
 
 
 .btn-primary {
-  background-color: #007bff;
+  background-color: #111010;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -62,7 +62,7 @@ body {
 }
 
 .btn-link {
-  color: #007bff;
+  color: #18A7E1;
   text-decoration: none;
   cursor: pointer;
 }
