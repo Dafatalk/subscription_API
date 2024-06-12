@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit{
         // Manejar la respuesta del backend (éxito, error, etc.)
         console.log('Respuesta del backend:', response);
         localStorage.setItem('jwtToken', response.token);
-        if(response.admin){
+        if(response.isAdmin){
           this.router.navigate(['/subscription'])
         }
         else{

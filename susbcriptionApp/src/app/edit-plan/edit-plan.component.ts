@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Plan } from 'src/models/plan';
 import { PlanService } from 'src/service/plan.service';
 
@@ -10,27 +10,32 @@ import { PlanService } from 'src/service/plan.service';
 })
 export class EditPlanComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any , private planservice:PlanService) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+  private planservice:PlanService,
+  private dialogRef: MatDialogRef<EditPlanComponent>
+) {}
 
   ngOnInit(): void {
   }
 
-  editPlan(name:any , price:any, description:any){
+  editPlan(id:any ,name:any , price:any, description:any){
 
-    const newplan:Plan = {
+    const newplan:any = {
+      id:id,
       name:name,
-      price:price,
+      price:price,  
       description:description
     }
-    
+    const updateData = {...this.data}
 
         this.planservice.editPlan(newplan).subscribe(
       (response) => {
-        // Manejar la respuesta del backend (éxito, error, etc.)
+        this.dialogRef.close({success: true, data:updateData})
         console.log('Respuesta del backend:', response);
       },
       (error) => {
-        // Manejar errores (por ejemplo, mostrar un mensaje de error al usuario)
+        this.dialogRef.close({success: false, error: "error al editar el plan"})
+
         console.error('Error al enviar la suscripción:', error);
       }
     );

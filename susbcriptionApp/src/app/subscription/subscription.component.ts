@@ -232,13 +232,26 @@ displayedColumns: string[] = [];
   }
   /**TABLAS EMERGENTE */
   editPlan(element: Plan): void {
-    this.dialog.open(EditPlanComponent, {
-      
+    const dialogRef = this.dialog.open(EditPlanComponent, {
       width: '30%',
-      height : '90%', 
-      data: element,
-      
+      height: '90%', 
+      data: element
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'success') {
+        // Manejar el caso de éxito
+        console.log('El plan fue editado con éxito');
+      } else if (result === 'error') {
+        // Manejar el caso de error
+        console.error('Ocurrió un error al editar el plan');
+      } else {
+        // Manejar el caso de cierre sin acción
+        console.log('El diálogo fue cerrado sin acción');
+      }
+    }, error => {
+      // Manejar cualquier otro error
+      console.error('Ocurrió un error al cerrar el diálogo:', error);
     });
   }
 
