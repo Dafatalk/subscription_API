@@ -11,6 +11,7 @@ import { Subscription } from 'src/models/subscription';
 import { Plan } from 'src/models/plan';
 import { EditPlanComponent } from '../edit-plan/edit-plan.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { EditPeriodComponent } from '../edit-period/edit-period.component';
 
 
 @Component({
@@ -95,12 +96,10 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
     this.subscriptionService.getsubscription().subscribe(
 
       (response) => {
-        console.log('Respuesta del backend:', response);
         this.subscriptions = response
         if (this.activableTab === 'subscription') {
           this.subscriptionDataSource.data = this.subscriptions;
           this.displayedColumns = ['name', 'planName', 'startDate', 'endDate', 'period', 'status'];
-          console.log("estamos AQUI y sí entró", this.subscriptionDataSource)
 
         }
 
@@ -114,12 +113,10 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
 
     this.planService.getPlan('monthly').subscribe(
       (response) => {
-        console.log('Respuesta del backend:', response);
         this.plans = response
         if (this.activableTab === 'plan') {
           this.plansDataSource.data = this.plans;
           this.displayedColumns = ['name', 'price', 'description', 'edit', 'delet'];
-          console.log("estamos AQUI y sí entró", this.plansDataSource)
 
         }
       },
@@ -132,7 +129,6 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
     this.planService.getPeriod().subscribe(
       (response) => {
         // Manejar la respuesta del backend (éxito, error, etc.)
-        console.log('Respuesta del backend de los periodos:', response);
         this.periods = response
         if (this.activableTab === 'period') {
           this.periodDataSource.data = this.periods;
@@ -150,7 +146,6 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
     this.planService.deletPlan(id).subscribe(
       (response) => {
         this.elementoAEliminar = name;
-        console.log(response)
         this.mostrarMensajeExito = true;
         this.getPlans
         // Ocultar mensaje después de un tiempo
@@ -160,9 +155,9 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
 
       },
       (error) => {
-        console.error('Error al enviar la suscripción:', error);
+        console.error('Error al eliminar el plan:', error);
         this.mostrarMensajeError = true;
-        this.elementoAEliminar = error.error.error;
+        this.elementoAEliminar = "This plan cannot be deleted because there are active subscriptions that depend on it.";
         setTimeout(() => {
           this.mostrarMensajeError = false;
         }, 5000); // 5000 ms = 5 segundos
@@ -173,12 +168,10 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
     this.planService.deletPeriod(id).subscribe(
 
       (response) => {
-        console.log("LO QUE ESTAMOS BUSCANDO DEL PERIOD" ,response)
         this.elementoAEliminar = ( "Period '" + name + "' has been deleted");
 
         this.mostrarMensajeExito = true;
         this.getPeriod()
-        // Ocultar mensaje después de un tiempo
         setTimeout(() => {
           this.mostrarMensajeExito = false;
         }, 5000); // 5000 ms = 5 segu
@@ -240,32 +233,76 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
       data: element
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log("AAAAAAAAAAAAAAAAAAAAAAAAA", dialogRef)
+      if(result.data.closeReason){
+        console.log("closed correctly")
+      }
+      else if (result.success) {
+        this.elementoAEditar = result.data.name
+        this.mostrarMensajeExitoEdit = true;
 
-      if (result.success) {
-        console.log('El plan fue editado con éxito', result.data);
         setTimeout(() => {
-          this.elementoAEditar = result.data
-          this.mostrarMensajeExitoEdit = true;
+          this.mostrarMensajeExitoEdit = false;
         }, 5000); // 5000 ms = 5 segu
 
       } else {
         // Manejar el caso de error
         console.error('Ocurrió un error:', result.error);
+        this.elementoAEditar = result.error
+        this.mostrarMensajeErrorEdit = true;
+
         setTimeout(() => {
-          this.elementoAEditar = result.error
-          this.mostrarMensajeErrorEdit = true;
+          this.mostrarMensajeErrorEdit = false;
 
         }, 5000); // 5000 ms = 5 segu
       }
     }, error => {
-      // Manejo de cualquier otro error
+      this.elementoAEditar = error
       setTimeout(() => {
-        this.elementoAEditar = error
         this.mostrarMensajeError = true;
       }, 5000); // 5000 ms = 5 segu
       console.error('Ocurrió un error al cerrar el diálogo:', error);
     });
   }
 
+  editPeriod(element: Period): void {
+    const dialogRef = this.dialog.open(EditPeriodComponent, {
+      width: '30%',
+      height: '90%',
+      data: element
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.data.closeReason){
+        console.log("closed correctly")
+      }
+
+
+      else if (result.success) {
+        this.elementoAEditar = result.data.name
+        this.mostrarMensajeExitoEdit = true;
+
+        setTimeout(() => {
+          this.mostrarMensajeExitoEdit = false;
+        }, 5000); // 5000 ms = 5 segu
+
+
+      } else {
+        // Manejar el caso de error
+        this.elementoAEditar = result.error
+        this.mostrarMensajeErrorEdit = true;
+
+        setTimeout(() => {
+          this.mostrarMensajeErrorEdit = false;
+
+        }, 5000); // 5000 ms = 5 segu
+      }
+    }, error => {
+      this.elementoAEditar = error
+      setTimeout(() => {
+        this.mostrarMensajeError = true;
+      }, 5000); // 5000 ms = 5 segu
+      console.error('Ocurrió un error al cerrar el diálogo:', error);
+    });
+  }
+
+  
 }

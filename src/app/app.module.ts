@@ -25,6 +25,7 @@ import { UsersubComponent } from './usersub/usersub.component';
 import { HeaderbarComponent } from './util/headerbar/headerbar.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
+import { NewperiodComponent } from './newperiod/newperiod.component';
 
 
 export function tokenGetter() {
@@ -50,7 +51,9 @@ const appRoutes: Routes=[
     EditPeriodComponent,
     ChooseplanComponent,
     UsersubComponent,
-    HeaderbarComponent
+    HeaderbarComponent,
+    UsersubComponent,
+    NewperiodComponent
   ],
   imports: [
     BrowserModule,
