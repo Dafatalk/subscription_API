@@ -1,0 +1,33 @@
+<div class="wrapper">
+	<div class="form" >
+			<h1>Create Plan</h1>
+			<section id="preguntas">
+				<p>
+					<label for="name">Name:</label>
+					<input #name type="text" name="nombres" id="name">
+				</p>
+				<p>
+					<label for="price">Price ($):</label>
+					<input #price type="number" name="price" id="price" inputmode="numeric"  numbersOnly>
+				</p>
+				<p>
+
+		  <p>
+			<label for="status">Description:</label>
+			<input #description type="tel" name="description"  id="status" class="descripcion" required="">
+		</p>
+
+				<p>
+				</p>
+
+			</section>
+			<section id="botones">
+				<p>
+					<button class="save" (click)="createNewPlan(name.value, price.value, description.value)"> 
+						Save
+					</button>
+				</p>
+
+			</section>
+		</div>
+<div>

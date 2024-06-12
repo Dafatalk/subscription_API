@@ -1,0 +1,213 @@
+
+
+
+/* LO QUE YA BUENO */
+
+
+
+.form{
+	background-color: transparent;
+	width: 350px;
+	padding: 40px 10px 20px 10px;
+	margin: 0 auto;
+	border-radius: 4px;
+  text-align: center;
+  height: 100%;
+  max-height: none;
+}
+.save{
+	display: block;
+	border: none;
+	margin: 20px auto;
+	width: 280px;
+	background-color: mediumseagreen;
+	padding: 15px 0;
+	text-align: center;
+	font-size: 18px;
+	border-radius: 4px;
+}
+.save:hover{
+	background-color: #2a8a2d;
+}
+.form p{
+    padding-top: 10px;
+
+}
+select{
+  background-color: #eaeaea;
+  font-size: 1.5em;
+  width: 340px;
+  height: 45px;
+}
+select option{
+	background-color: #eaeaea;
+}
+.orden{
+	display: inline-flex ;
+	margin: auto;
+	 
+}
+.orden input{
+	width: 200px;
+}
+
+label{
+  color: #808080;
+  font-size: 17px;
+}
+.hpta1{
+	margin-right: 10px;
+}
+.hpta2{
+	margin-left: 10px;
+}
+legend{
+  color: #808080;
+}
+.descripcion{
+	height: 70px;
+}
+
+
+
+
+input{
+	display: block;
+	border: none;
+	margin: 15px auto;
+	width: 300px;
+	background-color: #eaeaea;
+	padding: 5px 0;
+	text-align: center;
+	font-size: 15px;
+	border-radius: 4px;
+}
+
+/* Botón guardar chimba */
+.buttonSave {
+    margin: 20px auto;
+    font-family: inherit;
+    font-size: 20px;
+    background: #212121;
+    color: white;
+    fill: rgb(155, 153, 153);
+    padding: 0.7em 1em;
+    padding-left: 0.9em;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    font-weight: 1000;
+    width: 280px;
+
+  }
+  
+  .buttonSave span {
+    display: block;
+    margin-left: 0em;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .buttonSave svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+    margin-left: 3.6em;
+
+  }
+  
+  .buttonSave:hover {
+    background: mediumseagreen;
+  }
+  
+  .buttonSave:hover .svg-wrapper {
+    transform: scale(1.25);
+    transition: 0.5s linear;
+  }
+  
+  .buttonSave:hover svg {
+    transform: translateX(1.2em) scale(1.1);
+    fill: #fff;
+  }
+  
+  .buttonSave:hover span {
+    opacity: 0;
+    transition: 0.5s linear;
+  }
+  
+  .buttonSave:active {
+    transform: scale(0.95);
+  }
+  /* boton cancelar */
+  .button {
+    position: relative;
+    width: 280px;
+    height: 4em;
+    border: none;
+    background: rgba(180, 83, 107, 0.416);
+    border-radius: 5px;
+    transition: background 0.5s;
+    cursor: pointer;
+  }
+  
+  .X {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2em;
+    height: 1.5px;
+    background-color: rgb(255, 255, 255);
+    transform: translateX(-50%) rotate(45deg);
+  }
+  
+  .Y {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2em;
+    height: 1.5px;
+    background-color: #fff;
+    transform: translateX(-50%) rotate(-45deg);
+  }
+  
+  .close {
+    position: absolute;
+    display: flex;
+    padding: 0.8rem 1.5rem;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(-50%);
+    top: -70%;
+    left: 50%;
+    width: 3em;
+    height: 1.7em;
+    font-size: 12px;
+    background-color: rgb(19, 22, 24);
+    color: rgb(187, 229, 236);
+    border: none;
+    border-radius: 3px;
+    pointer-events: none;
+    opacity: 0;
+  }
+  
+  .button:hover {
+    background-color: rgb(211, 21, 21);
+  }
+  
+  .button:active {
+    background-color: rgb(130, 0, 0);
+  }
+  
+  .button:hover > .close {
+    animation: close 0.2s forwards 0.25s;
+  }
+  
+  @keyframes close {
+    100% {
+      opacity: 1;
+    }
+  }
+  
