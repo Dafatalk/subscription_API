@@ -21,7 +21,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { EditPlanComponent } from './edit-plan/edit-plan.component';
 import { EditPeriodComponent } from './edit-period/edit-period.component';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { UsersubComponent } from './usersub/usersub.component';
 
 
 export function tokenGetter() {
@@ -45,6 +45,8 @@ const appRoutes: Routes=[
     UserplanComponent,
     EditPlanComponent,
     EditPeriodComponent,
+    ChooseplanComponent,
+    UsersubComponent
   ],
   imports: [
     BrowserModule,

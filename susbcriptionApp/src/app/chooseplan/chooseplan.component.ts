@@ -1,87 +1,84 @@
-import { Component, OnInit } from '@angular/core';
-import { PlanService } from 'src/service/plan.service';
+import {Component, OnInit} from '@angular/core';
+import {PlanService} from 'src/service/plan.service';
 import {Observable} from "rxjs";
+
+export interface Period {
+  name: string;
+  discount: number;
+  months: number;
+}
 
 @Component({
   selector: 'app-chooseplan',
   templateUrl: './chooseplan.component.html',
   styleUrls: ['./chooseplan.component.css']
 })
+
 export class ChooseplanComponent implements OnInit {
   plans: any [] = [];
   periods: any [] = [];
-  monthly: any
-  planObservables: { [name: string]: Observable<any> } = {};
+  period: any = this.periods[0]
+  showLoading: boolean = true;
 
-  constructor(private planservice:PlanService) { }
+  planObservables: { [name: string]: Observable<any> } = {};
+  activePeriodIndex: number | null = null;
+
+  constructor(private planservice: PlanService) {
+  }
 
   ngOnInit(): void {
-    this.mostrar()
     this.getPeriod()
+    this.mostrar(this.period)
     this.createPlanObservables();
   }
+
+  setActivePeriod(period: Period, index: number) {
+    this.showLoading = true;
+    this.mostrar(period);
+    this.activePeriodIndex = index;
+  }
+
   createPlanObservables() {
     for (let plan of this.plans) {
       this.planObservables[plan.name] = this.planservice.getPlanByName(plan.name);
     }
   }
 
-  mostrar(){
-    this.planservice.getPlan('annual').subscribe(
-      (response) => {
-        // Manejar la respuesta del backend (éxito, error, etc.)
-        console.log('Respuesta del backend:', response);
-        this.plans = response
-        this.planservice.getPlanByName('Premium').subscribe(
-          (response1) => {
-            // Manejar la respuesta del backend (éxito, error, etc.)
-            console.log('Respuesta del backend:', response1);
-            this.plans = this.plans.map((plan: any) =>({
-              ...plan,
-              priceMonth: response1.price
-            }))
-            console.log(this.plans)
-          },
-          (error) => {
-            // Manejar errores (por ejemplo, mostrar un mensaje de error al usuario)
-            console.error('23Error al enviar la suscripción:', error);
-          }
-        );
-      },
-      (error) => {
-        // Manejar errores (por ejemplo, mostrar un mensaje de error al usuario)
-        console.error('23Error al enviar la suscripción:', error);
-      }
-    );
+  mostrar(period: any) {
+    if (period != null) {
+      console.log(period);
+      this.planservice.getPlan(period.name).subscribe(
+        (response) => {
+          this.plans = response
+          this.setPeriod(period)
+          this.showLoading = false;
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    }
   }
 
-  getPlanByName(name:any): any{
-    this.planservice.getPlanByName(name).subscribe(
-      (response) => {
-        // Manejar la respuesta del backend (éxito, error, etc.)
-        console.log('Respuesta del backend:', response);
-        return response.price
-      },
-      (error) => {
-        // Manejar errores (por ejemplo, mostrar un mensaje de error al usuario)
-        console.error('23Error al enviar la suscripción:', error);
-      }
-    );
-
-  }
-
-  getPeriod(){
+  getPeriod() {
     this.planservice.getPeriod().subscribe(
       (response) => {
         // Manejar la respuesta del backend (éxito, error, etc.)
         console.log('Respuesta del backend:', response);
         this.periods = response
+        if (this.periods.length > 0) {
+          this.setActivePeriod(this.periods[0], 0);
+        }
       },
       (error) => {
         // Manejar errores (por ejemplo, mostrar un mensaje de error al usuario)
         console.error('Error al enviar la suscripción:', error);
       }
     );
+  }
+
+  setPeriod(period: any): void {
+    this.period = period
   }
 
   protected readonly name = name;

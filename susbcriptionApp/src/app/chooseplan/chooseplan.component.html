@@ -1,36 +1,45 @@
-
+<!doctype html>
+<html>
 <head>
   <title>Plan</title>
   <link rel="stylesheet" type="text/css" href="chooseplan.component.css">
 </head>
-<body>
+<body style="background-color: #f4f4f4; height: 100vh">
 <div class="pricing-table">
 
   <div class="filter">
-    <button class="subscription-period">asdasdasd</button>
+
+    <ng-container *ngFor="let period of periods; let i = index">
+      <button class="periodButton" [class.active]="i === activePeriodIndex"  (click)="setActivePeriod(period, i)">{{ period.name.toUpperCase() }}</button>
+    </ng-container>
+
   </div>
-
-  <ng-container *ngFor="let period of periods; let i = index">
-  <div class="filter">
-    <button class="subscription-period">{{period.name}}</button>
+  <div class="loading" *ngIf="showLoading" style="width: 100%; align-items: end; display: flex; justify-content: center">
+    <div class="wrapper">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="shadow"></div>
+      <div class="shadow"></div>
+      <div class="shadow"></div>
+    </div>
   </div>
-  </ng-container>
-
-
   <ng-container *ngFor="let plan of plans; let i = index">
-  <div class="plan">
-    <h2>{{plan.name}}</h2>
-    <p class="price" id="starter-price">{{plan.price}}</p>
-    <p class="price" id="price-per-month">{{(planObservables[plan.name] | async)?.price}}</p>
 
-    <ul>
-      <li>{{plan.description}}</li>
-    </ul>
-    <button>Get started</button>
-  </div>
+    <div class="plan">
+      <h2>{{ plan.name.toUpperCase() }}</h2>
+      <p class="price" id="starter-price">${{ plan.price * period.months | number:'1.2-2'}}</p>
+      <p id="price-per-month">${{ plan.price }}/Month</p>
+
+      <ul style="height: 70px">
+        <li>{{ plan.description }}</li>
+      </ul>
+      <button class="subButton">Get started</button>
+    </div>
   </ng-container>
 
 </div>
 </body>
+</html>
 
 
