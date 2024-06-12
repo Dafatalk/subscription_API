@@ -22,6 +22,7 @@ import { EditPlanComponent } from './edit-plan/edit-plan.component';
 import { EditPeriodComponent } from './edit-period/edit-period.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UsersubComponent } from './usersub/usersub.component';
+import { NewperiodComponent } from './newperiod/newperiod.component';
 
 
 export function tokenGetter() {
@@ -46,7 +47,8 @@ const appRoutes: Routes=[
     EditPlanComponent,
     EditPeriodComponent,
     ChooseplanComponent,
-    UsersubComponent
+    UsersubComponent,
+    NewperiodComponent
   ],
   imports: [
     BrowserModule,

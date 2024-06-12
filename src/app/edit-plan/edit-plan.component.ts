@@ -9,12 +9,17 @@ import { PlanService } from 'src/service/plan.service';
   styleUrls: ['./edit-plan.component.css']
 })
 export class EditPlanComponent implements OnInit {
+  closeReason: boolean = false;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               private planservice:PlanService,
               private dialogRef: MatDialogRef<EditPlanComponent>
   ) {}
-
+  closeDialog(): void {
+    this.closeReason = true;
+    const updateData = { ...this.data, closeReason: this.closeReason };
+    this.dialogRef.close({ success: false, data: updateData });
+  }
   ngOnInit(): void {
   }
 
