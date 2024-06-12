@@ -11,9 +11,9 @@ import { PlanService } from 'src/service/plan.service';
 export class EditPlanComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
-  private planservice:PlanService,
-  private dialogRef: MatDialogRef<EditPlanComponent>
-) {}
+              private planservice:PlanService,
+              private dialogRef: MatDialogRef<EditPlanComponent>
+  ) {}
 
   ngOnInit(): void {
   }
@@ -23,15 +23,15 @@ export class EditPlanComponent implements OnInit {
     const newplan:any = {
       id:id,
       name:name,
-      price:price,  
+      price:price,
       description:description
     }
     const updateData = {...this.data}
 
-        this.planservice.editPlan(newplan).subscribe(
+    this.planservice.editPlan(newplan).subscribe(
       (response) => {
         this.dialogRef.close({success: true, data:updateData})
-        console.log('Respuesta del backend:', response);
+        console.log('Respuesta del backend DE EDITAR UN PLAN:', response);
       },
       (error) => {
         this.dialogRef.close({success: false, error: "error al editar el plan"})
