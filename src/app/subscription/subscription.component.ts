@@ -22,28 +22,30 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
 
   /**mensajes emergentes */
   elementoAEliminar: any;
-
+  elementoAEditar : any;
   mostrarMensajeExito: boolean = false;
   mostrarMensajeError: boolean = false;
+  mostrarMensajeExitoEdit: boolean = false;
+  mostrarMensajeErrorEdit: boolean = false;
   /** matricez que se usan para guardar los datos del endpoint */
-subscriptions: Subscription[] = [];
-plans: Plan[] = [];
-periods: Period [] = [];
-/**variables que uso para la tabla buena */
-subscriptionDataSource = new MatTableDataSource ();
-plansDataSource = new MatTableDataSource ();
-periodDataSource = new MatTableDataSource ();
+  subscriptions: Subscription[] = [];
+  plans: Plan[] = [];
+  periods: Period [] = [];
+  /**variables que uso para la tabla buena */
+  subscriptionDataSource = new MatTableDataSource ();
+  plansDataSource = new MatTableDataSource ();
+  periodDataSource = new MatTableDataSource ();
 
-displayedColumns: string[] = [];
-@ViewChild(MatSort) sort!: MatSort;
+  displayedColumns: string[] = [];
+  @ViewChild(MatSort) sort!: MatSort;
 
   /** configuración de la barra de navegación */
-  
+
 
   collapsedNav = false;
   activableTab: String ='subscription';
   collapse(): void {
-    this.collapsedNav = !this.collapsedNav; 
+    this.collapsedNav = !this.collapsedNav;
   }
   changeTab(tab: String): void {
     this.activableTab = tab;
@@ -58,7 +60,7 @@ displayedColumns: string[] = [];
       sub.style.color = '#ffffff';
       plan.style.color = '#ffffff';
       period.style.color = '#ffffff';
-  
+
       // Establecer el color azul para la pestaña activa
       if (tab === 'subscription') {
         sub.style.color = '#18A7E1';
@@ -68,8 +70,8 @@ displayedColumns: string[] = [];
         period.style.color = '#18A7E1';
       }
     }
-}
- 
+  }
+
 
   constructor(
     private subscriptionService:SubscriptionService,
@@ -83,15 +85,15 @@ displayedColumns: string[] = [];
     this.getPlans();
     this.getPeriod();
     this.updateTableData();
-      }
+  }
 
 
   /**funciones que traen los datos de los endpoints y los almacenan */
-  
+
   getSubscritions(){
-    
+
     this.subscriptionService.getsubscription().subscribe(
-      
+
       (response) => {
         console.log('Respuesta del backend:', response);
         this.subscriptions = response
@@ -109,7 +111,7 @@ displayedColumns: string[] = [];
     );
   }
   getPlans(){
-    
+
     this.planService.getPlan('monthly').subscribe(
       (response) => {
         console.log('Respuesta del backend:', response);
@@ -149,12 +151,12 @@ displayedColumns: string[] = [];
       (response) => {
         this.elementoAEliminar = name;
         console.log(response)
-  this.mostrarMensajeExito = true;
-  this.getPlans
-  // Ocultar mensaje después de un tiempo
-  setTimeout(() => {
-    this.mostrarMensajeExito = false;
-  }, 5000); // 5000 ms = 5 segu
+        this.mostrarMensajeExito = true;
+        this.getPlans
+        // Ocultar mensaje después de un tiempo
+        setTimeout(() => {
+          this.mostrarMensajeExito = false;
+        }, 5000); // 5000 ms = 5 segu
 
       },
       (error) => {
@@ -169,17 +171,17 @@ displayedColumns: string[] = [];
   }
   deletPeriod(id:any, name:any){
     this.planService.deletPeriod(id).subscribe(
-      
+
       (response) => {
         console.log("LO QUE ESTAMOS BUSCANDO DEL PERIOD" ,response)
         this.elementoAEliminar = ( "Period '" + name + "' has been deleted");
 
-  this.mostrarMensajeExito = true;
-  this.getPeriod()
-  // Ocultar mensaje después de un tiempo
-  setTimeout(() => {
-    this.mostrarMensajeExito = false;
-  }, 5000); // 5000 ms = 5 segu
+        this.mostrarMensajeExito = true;
+        this.getPeriod()
+        // Ocultar mensaje después de un tiempo
+        setTimeout(() => {
+          this.mostrarMensajeExito = false;
+        }, 5000); // 5000 ms = 5 segu
 
       },
       (error) => {
@@ -193,17 +195,17 @@ displayedColumns: string[] = [];
     );
   }
 
-  /* TABLAS DE MATERIAL */ 
-  
+  /* TABLAS DE MATERIAL */
+
 
 
 
 
 
   ngAfterViewInit() {
-    this.subscriptionDataSource.sort = this.sort; 
-    this.plansDataSource.sort = this.sort; 
-    this.periodDataSource.sort = this.sort; 
+    this.subscriptionDataSource.sort = this.sort;
+    this.plansDataSource.sort = this.sort;
+    this.periodDataSource.sort = this.sort;
 
 
   }
@@ -234,23 +236,34 @@ displayedColumns: string[] = [];
   editPlan(element: Plan): void {
     const dialogRef = this.dialog.open(EditPlanComponent, {
       width: '30%',
-      height: '90%', 
+      height: '90%',
       data: element
     });
-
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'success') {
-        // Manejar el caso de éxito
-        console.log('El plan fue editado con éxito');
-      } else if (result === 'error') {
-        // Manejar el caso de error
-        console.error('Ocurrió un error al editar el plan');
+      console.log("AAAAAAAAAAAAAAAAAAAAAAAAA", dialogRef)
+
+      if (result.success) {
+        console.log('El plan fue editado con éxito', result.data);
+        setTimeout(() => {
+          this.elementoAEditar = result.data
+          this.mostrarMensajeExitoEdit = true;
+        }, 5000); // 5000 ms = 5 segu
+
       } else {
-        // Manejar el caso de cierre sin acción
-        console.log('El diálogo fue cerrado sin acción');
+        // Manejar el caso de error
+        console.error('Ocurrió un error:', result.error);
+        setTimeout(() => {
+          this.elementoAEditar = result.error
+          this.mostrarMensajeErrorEdit = true;
+
+        }, 5000); // 5000 ms = 5 segu
       }
     }, error => {
-      // Manejar cualquier otro error
+      // Manejo de cualquier otro error
+      setTimeout(() => {
+        this.elementoAEditar = error
+        this.mostrarMensajeError = true;
+      }, 5000); // 5000 ms = 5 segu
       console.error('Ocurrió un error al cerrar el diálogo:', error);
     });
   }
