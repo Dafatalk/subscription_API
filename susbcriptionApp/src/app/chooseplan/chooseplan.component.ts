@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { PlanService } from 'src/service/plan.service';
+import {Component, OnInit} from '@angular/core';
+import {PlanService} from 'src/service/plan.service';
 import {Observable} from "rxjs";
 
 export interface Period {
@@ -17,44 +17,50 @@ export interface Period {
 export class ChooseplanComponent implements OnInit {
   plans: any [] = [];
   periods: any [] = [];
-  period: Period = {
-    name: "monthly",
-    discount: 0,
-    months: 1
-  }
+  period: any = this.periods[0]
+  showLoading: boolean = true;
+
   planObservables: { [name: string]: Observable<any> } = {};
   activePeriodIndex: number | null = null;
 
-  constructor(private planservice:PlanService) { }
+  constructor(private planservice: PlanService) {
+  }
 
   ngOnInit(): void {
     this.getPeriod()
     this.mostrar(this.period)
     this.createPlanObservables();
   }
+
   setActivePeriod(period: Period, index: number) {
+    this.showLoading = true;
     this.mostrar(period);
     this.activePeriodIndex = index;
   }
+
   createPlanObservables() {
     for (let plan of this.plans) {
       this.planObservables[plan.name] = this.planservice.getPlanByName(plan.name);
     }
   }
 
-  mostrar(period: any){
-    this.planservice.getPlan(period.name).subscribe(
-      (response) => {
-        this.plans = response
-        this.setPeriod(period)
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+  mostrar(period: any) {
+    if (period != null) {
+      console.log(period);
+      this.planservice.getPlan(period.name).subscribe(
+        (response) => {
+          this.plans = response
+          this.setPeriod(period)
+          this.showLoading = false;
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    }
   }
 
-  getPeriod(){
+  getPeriod() {
     this.planservice.getPeriod().subscribe(
       (response) => {
         // Manejar la respuesta del backend (éxito, error, etc.)

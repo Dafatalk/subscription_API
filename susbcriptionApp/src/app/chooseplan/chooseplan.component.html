@@ -8,13 +8,24 @@
 <div class="pricing-table">
 
   <div class="filter">
+
     <ng-container *ngFor="let period of periods; let i = index">
       <button class="periodButton" [class.active]="i === activePeriodIndex"  (click)="setActivePeriod(period, i)">{{ period.name.toUpperCase() }}</button>
     </ng-container>
+
   </div>
-
-
+  <div class="loading" *ngIf="showLoading" style="width: 100%; align-items: end; display: flex; justify-content: center">
+    <div class="wrapper">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="shadow"></div>
+      <div class="shadow"></div>
+      <div class="shadow"></div>
+    </div>
+  </div>
   <ng-container *ngFor="let plan of plans; let i = index">
+
     <div class="plan">
       <h2>{{ plan.name.toUpperCase() }}</h2>
       <p class="price" id="starter-price">${{ plan.price * period.months | number:'1.2-2'}}</p>
