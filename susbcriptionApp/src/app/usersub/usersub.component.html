@@ -1,1 +1,20 @@
-<p>usersub works!</p>
+<!doctype html>
+<html>
+<head>
+  <title>Plan</title>
+  <link rel="stylesheet" type="text/css" href="usersub.component.css">
+</head>
+<div class="user-plan">
+  <h2>YOUR PLAN</h2>
+  <div class="plan">
+    <h2>{{ plan.name.toUpperCase() }}</h2>
+    <p class="price">${{ plan.price * period.months | number:'1.2-2' }}</p>
+    <p>${{ plan.price }}/Month</p>
+    <ul>
+      <li>{{ plan.description }}</li>
+    </ul>
+    <p>Duration: {{ startDate | date: 'MMM d, y' }} - {{ endDate | date: 'MMM d, y' }}</p>
+    <button (click)="goBack()">Choose another plan</button>
+  </div>
+</div>
+

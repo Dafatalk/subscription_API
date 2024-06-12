@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 import {PlanService} from 'src/service/plan.service';
 import {Observable} from "rxjs";
 
@@ -23,13 +24,16 @@ export class ChooseplanComponent implements OnInit {
   planObservables: { [name: string]: Observable<any> } = {};
   activePeriodIndex: number | null = null;
 
-  constructor(private planservice: PlanService) {
+  constructor(private planservice: PlanService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.getPeriod()
     this.mostrar(this.period)
     this.createPlanObservables();
+  }
+  selectPlan(plan: any): void {
+    this.router.navigate(['/usersub'], { state: { plan: plan, period: this.period } });
   }
 
   setActivePeriod(period: Period, index: number) {
@@ -80,6 +84,8 @@ export class ChooseplanComponent implements OnInit {
   setPeriod(period: any): void {
     this.period = period
   }
+
+
 
   protected readonly name = name;
 }

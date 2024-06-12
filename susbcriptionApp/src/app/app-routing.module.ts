@@ -6,6 +6,7 @@ import { SiginComponent } from './sigin/sigin.component';
 import { LoginComponent } from './login/login.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { UserplanComponent } from './userplan/userplan.component';
+import { UsersubComponent } from "./usersub/usersub.component";
 
 const routes: Routes = [
   { path: 'choose', component: ChooseplanComponent },
@@ -14,6 +15,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'subscription', component: SubscriptionComponent },
   { path: 'userplan', component: UserplanComponent },
+  { path: 'usersub', component: UsersubComponent },
+  { path: '', redirectTo: '/chooseplan', pathMatch: 'full' }
 
 
 ];
@@ -23,6 +26,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
-  
+
  }
 

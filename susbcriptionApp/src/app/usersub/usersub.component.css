@@ -1,0 +1,49 @@
+.user-plan {
+  text-align: center;
+  margin: 50px;
+}
+
+.plan {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 5px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.plan h2 {
+  margin: 0;
+  padding: 10px 0;
+  font-size: 30px;
+  color: #1491c5;
+}
+
+.plan .price {
+  font-size: 26px;
+  color: #333;
+  margin: 20px 0;
+}
+
+.plan ul {
+  list-style: none;
+  padding: 0;
+}
+
+.plan ul li {
+  padding: 5px 0;
+  border-top: 1px solid #eee;
+}
+
+.plan button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+}
