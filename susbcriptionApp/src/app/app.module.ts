@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { SiginComponent } from './sigin/sigin.component';
 import { LoginComponent } from './login/login.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
-import { NewsubComponent } from './newsub/newsub.component';
+import { NewplanComponent } from './newplan/newplan.component';
 import { Routes } from '@angular/router';
 import { FormsModule} from "@angular/forms";
 import { AppHttpInterceptor } from './http.interceptor';
@@ -18,6 +18,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { EditPlanComponent } from './edit-plan/edit-plan.component';
+import { EditPeriodComponent } from './edit-period/edit-period.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 export function tokenGetter() {
@@ -28,7 +32,6 @@ const appRoutes: Routes=[
   {path: 'sigin', component: SiginComponent},
   {path: 'login', component: LoginComponent},
   {path: 'subs', component: SubscriptionComponent},
-  {path: 'new', component: NewsubComponent}
 
 ];
 @NgModule({
@@ -37,9 +40,11 @@ const appRoutes: Routes=[
     SiginComponent,
     LoginComponent,
     SubscriptionComponent,
-    NewsubComponent,
+    NewplanComponent,
     ChooseplanComponent,
-    UserplanComponent
+    UserplanComponent,
+    EditPlanComponent,
+    EditPeriodComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +61,8 @@ const appRoutes: Routes=[
     BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule,
 
   ],
   providers: [

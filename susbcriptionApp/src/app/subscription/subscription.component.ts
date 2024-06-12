@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlanService } from 'src/service/plan.service';
 import { SubscriptionService } from 'src/service/subscription.service';
-import { userService } from 'src/service/user.service';
+import { MatDialog } from '@angular/material/dialog';
 import {AfterViewInit, ViewChild} from '@angular/core';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
@@ -9,12 +9,22 @@ import {LiveAnnouncer} from '@angular/cdk/a11y';
 import { Period } from 'src/models/period';
 import { Subscription } from 'src/models/subscription';
 import { Plan } from 'src/models/plan';
+import { EditPlanComponent } from '../edit-plan/edit-plan.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+
 @Component({
   selector: 'app-subscription',
   templateUrl: './subscription.component.html',
   styleUrls: ['./subscription.component.css']
 })
 export class SubscriptionComponent implements OnInit, AfterViewInit  {
+
+  /**mensajes emergentes */
+  elementoAEliminar: any;
+
+  mostrarMensajeExito: boolean = false;
+  mostrarMensajeError: boolean = false;
   /** matricez que se usan para guardar los datos del endpoint */
 subscriptions: Subscription[] = [];
 plans: Plan[] = [];
@@ -28,21 +38,44 @@ displayedColumns: string[] = [];
 @ViewChild(MatSort) sort!: MatSort;
 
   /** configuración de la barra de navegación */
+  
+
   collapsedNav = false;
   activableTab: String ='subscription';
   collapse(): void {
     this.collapsedNav = !this.collapsedNav; 
   }
-  changeTab(tab:String){
+  changeTab(tab: String): void {
     this.activableTab = tab;
     this.collapsedNav = false;
     this.updateTableData();
-  }
+    const sub = document.getElementById('subsli');
+    const plan = document.getElementById('planli');
+    const period = document.getElementById('periodli');
+
+    if (sub && plan && period) {
+      // Reiniciar el color de todas las pestañas
+      sub.style.color = '#ffffff';
+      plan.style.color = '#ffffff';
+      period.style.color = '#ffffff';
+  
+      // Establecer el color azul para la pestaña activa
+      if (tab === 'subscription') {
+        sub.style.color = '#18A7E1';
+      } else if (tab === 'plan') {
+        plan.style.color = '#18A7E1';
+      } else if (tab === 'period') {
+        period.style.color = '#18A7E1';
+      }
+    }
+}
+ 
 
   constructor(
     private subscriptionService:SubscriptionService,
     private planService:PlanService,
-    private _liveAnnouncer: LiveAnnouncer
+    private _liveAnnouncer: LiveAnnouncer,
+    private dialog:MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -50,7 +83,6 @@ displayedColumns: string[] = [];
     this.getPlans();
     this.getPeriod();
     this.updateTableData();
-
       }
 
 
@@ -84,7 +116,7 @@ displayedColumns: string[] = [];
         this.plans = response
         if (this.activableTab === 'plan') {
           this.plansDataSource.data = this.plans;
-          this.displayedColumns = ['namePlan', 'price', 'description'];
+          this.displayedColumns = ['name', 'price', 'description', 'edit', 'delet'];
           console.log("estamos AQUI y sí entró", this.plansDataSource)
 
         }
@@ -102,7 +134,7 @@ displayedColumns: string[] = [];
         this.periods = response
         if (this.activableTab === 'period') {
           this.periodDataSource.data = this.periods;
-          this.displayedColumns = ['name', 'discount', 'month'];
+          this.displayedColumns = ['name', 'discount', 'month', 'edit', 'delet'];
         }
       },
       (error) => {
@@ -111,7 +143,55 @@ displayedColumns: string[] = [];
       }
     );
   }
+  /**funciones que editan y eliminan */
+  deletPlan(id:any, name:any){
+    this.planService.deletPlan(id).subscribe(
+      (response) => {
+        this.elementoAEliminar = name;
+        console.log(response)
+  this.mostrarMensajeExito = true;
+  this.getPlans
+  // Ocultar mensaje después de un tiempo
+  setTimeout(() => {
+    this.mostrarMensajeExito = false;
+  }, 5000); // 5000 ms = 5 segu
 
+      },
+      (error) => {
+        console.error('Error al enviar la suscripción:', error);
+        this.mostrarMensajeError = true;
+        this.elementoAEliminar = error.error.error;
+        setTimeout(() => {
+          this.mostrarMensajeError = false;
+        }, 5000); // 5000 ms = 5 segundos
+      }
+    );
+  }
+  deletPeriod(id:any, name:any){
+    this.planService.deletPeriod(id).subscribe(
+      
+      (response) => {
+        console.log("LO QUE ESTAMOS BUSCANDO DEL PERIOD" ,response)
+        this.elementoAEliminar = ( "Period '" + name + "' has been deleted");
+
+  this.mostrarMensajeExito = true;
+  this.getPeriod()
+  // Ocultar mensaje después de un tiempo
+  setTimeout(() => {
+    this.mostrarMensajeExito = false;
+  }, 5000); // 5000 ms = 5 segu
+
+      },
+      (error) => {
+        console.error('Error al enviar la suscripción:', error);
+        this.mostrarMensajeError = true;
+        this.elementoAEliminar = error.error;
+        setTimeout(() => {
+          this.mostrarMensajeError = false;
+        }, 5000); // 5000 ms = 5 segundos
+      }
+    );
+  }
 
   /* TABLAS DE MATERIAL */ 
   
@@ -142,13 +222,24 @@ displayedColumns: string[] = [];
         break;
       case 'plan':
         this.plansDataSource.data = this.plans;
-        this.displayedColumns = ['nameplan', 'price', 'description'];
+        this.displayedColumns = ['name', 'price', 'description', 'edit', 'delet'];
         break;
       case 'period':
         this.periodDataSource.data = this.periods;
-        this.displayedColumns = ['name', 'discount', 'month'];
+        this.displayedColumns = ['name', 'discount', 'month', 'edit', 'delet'];
         break;
     }
+  }
+  /**TABLAS EMERGENTE */
+  editPlan(element: Plan): void {
+    this.dialog.open(EditPlanComponent, {
+      
+      width: '30%',
+      height : '90%', 
+      data: element,
+      
+
+    });
   }
 
 }

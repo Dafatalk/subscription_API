@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NewsubComponent } from './newsub/newsub.component'; 
+import { NewplanComponent } from './newplan/newplan.component'; 
 
 @Component({
   selector: 'app-root',

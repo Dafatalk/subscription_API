@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpEvent, HttpHeaders, HttpRequest} from '@angular/common/http';
 import {Observable} from "rxjs";
+import { Plan } from 'src/models/plan';
+import { Period } from 'src/models/period';
 
 
 @Injectable({
@@ -39,9 +41,7 @@ import {Observable} from "rxjs";
   }
   getPlanByName(name:any): Observable<any> {
 
-    // Realiza la solicitud GET con los encabezados
-    // return this.http.get<any>('/api/v1/rest/subscription');
-    const url = `${'/api/v1/rest/plan/name/'}${name}`; // Construye la URL con el ID
+    const url = `${'/api/v1/rest/plan/name/'}${name}`;
     return this.http.get<any>(url);
   }
 
@@ -49,6 +49,22 @@ import {Observable} from "rxjs";
   getPeriod(): Observable<any> {
     return this.http.get<any>('/api/v1/rest/period/list');
   }
- 
+
+  deletPlan(id:any): Observable<any> {
+
+    const url = `${'/api/v1/rest/plan'}?id=${id}`;
+    return this.http.delete<any>(url);
+  }
+  editPlan(plan:Plan): Observable<any> {
+    return this.http.put<any>('/api/v1/rest/plan', plan);
+  }
+  deletPeriod(id:any): Observable<String> {
+
+    const url = `${'/api/v1/rest/period'}?id=${id}`;
+    return this.http.delete(url,{ responseType: 'text' });
+  }
+  editPeriod(period:Period): Observable<any> {
+    return this.http.put<any>('/api/v1/rest/period', period);
+  }
 
 }

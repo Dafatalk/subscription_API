@@ -1,24 +1,25 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
-import { NewsubComponent } from './newsub.component';
+import { NewplanComponent } from './newplan.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubscriptionService } from '../../service/subscription.service';
+import { PlanService } from 'src/service/plan.service';
 
 
 
-describe('NewsubComponent', () => {
-  let component: NewsubComponent;
-  let fixture: ComponentFixture<NewsubComponent>;
+describe('NewplanComponent', () => {
+  let component: NewplanComponent;
+  let fixture: ComponentFixture<NewplanComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NewsubComponent],
+      declarations: [ NewplanComponent],
        imports:[
-        SubscriptionService]
+        PlanService]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NewsubComponent);
+    fixture = TestBed.createComponent(NewplanComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

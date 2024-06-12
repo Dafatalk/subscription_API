@@ -1,5 +1,4 @@
 import { Component, OnInit, Directive, ElementRef, HostListener } from '@angular/core';
-import { Router } from '@angular/router';
 import { Plan } from 'src/models/plan';
 import { PlanService } from 'src/service/plan.service';
 @Directive({
@@ -19,12 +18,12 @@ export class NumbersOnlyDirective {
 }
 
 @Component({
-  selector: 'app-newsub',
-  templateUrl: './newsub.component.html',
-  styleUrls: ['./newsub.component.css']
+  selector: 'app-newplan',
+  templateUrl: './newplan.component.html',
+  styleUrls: ['./newplan.component.css']
 })
 
-export class NewsubComponent implements OnInit {
+export class NewplanComponent implements OnInit {
   httpResponse:any = null;
 
 
