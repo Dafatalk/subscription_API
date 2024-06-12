@@ -9,7 +9,7 @@
 
   <div class="filter">
     <ng-container *ngFor="let period of periods; let i = index">
-      <button class="periodButton" (click)="mostrar(period)">{{ period.name.toUpperCase() }}</button>
+      <button class="periodButton" [class.active]="i === activePeriodIndex"  (click)="setActivePeriod(period, i)">{{ period.name.toUpperCase() }}</button>
     </ng-container>
   </div>
 

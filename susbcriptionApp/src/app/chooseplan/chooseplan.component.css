@@ -37,7 +37,7 @@ body {
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-.filter button:hover, .filter button.selected {
+.filter button:hover, .filter button.active {
   background-color: #640E81;
   color: #fff;
 }

@@ -23,13 +23,18 @@ export class ChooseplanComponent implements OnInit {
     months: 1
   }
   planObservables: { [name: string]: Observable<any> } = {};
+  activePeriodIndex: number | null = null;
 
   constructor(private planservice:PlanService) { }
 
   ngOnInit(): void {
-    this.mostrar(this.period)
     this.getPeriod()
+    this.mostrar(this.period)
     this.createPlanObservables();
+  }
+  setActivePeriod(period: Period, index: number) {
+    this.mostrar(period);
+    this.activePeriodIndex = index;
   }
   createPlanObservables() {
     for (let plan of this.plans) {
@@ -55,6 +60,9 @@ export class ChooseplanComponent implements OnInit {
         // Manejar la respuesta del backend (éxito, error, etc.)
         console.log('Respuesta del backend:', response);
         this.periods = response
+        if (this.periods.length > 0) {
+          this.setActivePeriod(this.periods[0], 0);
+        }
       },
       (error) => {
         // Manejar errores (por ejemplo, mostrar un mensaje de error al usuario)
