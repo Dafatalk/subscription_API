@@ -11,7 +11,9 @@ import {Router} from "@angular/router";
 })
 
 export class SigninComponent {
+  errorReason: any;
 
+  mostrarMensajeError: boolean = false;
   name: any = null;
   lastName: any = null;
   mobileNumber: any = null;
@@ -56,6 +58,11 @@ export class SigninComponent {
         this.router.navigate(['/home'])
       },
       (error) => {
+        this.errorReason = 'To register you need to fill out all the spaces'
+        this.mostrarMensajeError = true
+        setTimeout(() => {
+          this.mostrarMensajeError = false;
+        }, 5000); // 5000 ms = 5 segu
         // Manejar errores (por ejemplo, mostrar un mensaje de error al usuario)
         console.error('Error al enviar la suscripción:', error);
       }

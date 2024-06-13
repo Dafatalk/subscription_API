@@ -10,6 +10,9 @@ import {TokenService} from "../../core/services/token.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
+  errorReason: any;
+
+  mostrarMensajeError: boolean = false;
   username: any = null;
   password: any = null;
   rememberMe: boolean = false;
@@ -46,6 +49,11 @@ export class LoginComponent implements OnInit{
         }
       },
       (error) => {
+        this.errorReason = 'incorrect user or password'
+        this.mostrarMensajeError = true
+        setTimeout(() => {
+          this.mostrarMensajeError = false;
+        }, 5000); // 5000 ms = 5 segu
         // Manejar errores (por ejemplo, mostrar un mensaje de error al usuario)
         console.error('Error al enviar la suscripción:', error);
       }

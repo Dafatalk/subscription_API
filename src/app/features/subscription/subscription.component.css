@@ -20,7 +20,10 @@ th.mat-sort-header-sorted {
 }
  /**/
   /* ADMIN PANEL */
-
+th{
+  font-size: 16px;
+  color: #000000;
+}
 
   ul, li {
     margin: 0;
@@ -143,6 +146,7 @@ th.mat-sort-header-sorted {
     left: 30px;
   }
 
+
   .panel-content{
     flex: 1;
     padding: 10px;
@@ -174,6 +178,9 @@ th.mat-sort-header-sorted {
     margin-left: 40px;
   }
 
+  .tdarreglo{
+    width: 75px;
+  }
 
 
 
