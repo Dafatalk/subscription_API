@@ -45,7 +45,7 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
 
 
   collapsedNav = false;
-  activableTab: String ='plan';
+  activableTab: String ='subscription';
   collapse(): void {
     this.collapsedNav = !this.collapsedNav;
   }
@@ -255,6 +255,7 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
       data: element
     });
     dialogRef.afterClosed().subscribe(result => {
+      this.getPlans();
       if(result.data.closeReason  ){
         console.log("closed correctly")
       }
@@ -270,11 +271,12 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
 
       } else {
         // Manejar el caso de error
+        this.getPlans();
+
         console.error('Ocurrió un error:', result.error);
         this.elementoAEditar = result.error
         this.mostrarMensajeErrorEdit = true;
         result.data.closeReason = false;
-        this.getPlans();
         setTimeout(() => {
           this.mostrarMensajeErrorEdit = false;
 
@@ -282,6 +284,8 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
       }
     }, error => {
       this.elementoAEditar = error
+      this.getPlans();
+
       setTimeout(() => {
         this.mostrarMensajeError = true;
       }, 5000); // 5000 ms = 5 segu
