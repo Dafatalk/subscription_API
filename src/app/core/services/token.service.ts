@@ -8,10 +8,15 @@ import { BehaviorSubject } from 'rxjs';
 export class TokenService {
 
   private tokenSubject: BehaviorSubject<string | null>;
+  private userSubject: BehaviorSubject<string | null>;
+
 
   constructor() {
     const token = localStorage.getItem('jwtToken');
+    const userId = localStorage.getItem('userId');
     this.tokenSubject = new BehaviorSubject<string | null>(token);
+    this.userSubject = new BehaviorSubject<string | null>(userId);
+
   }
 
   get token$() {
@@ -25,7 +30,13 @@ export class TokenService {
 
   clearToken() {
     localStorage.removeItem('jwtToken');
+    localStorage.removeItem('userId');
     this.tokenSubject.next(null);
+  }
+
+  setUserId(id: string) {
+    localStorage.setItem('userId', id);
+    this.userSubject.next(id);
   }
 
 }
