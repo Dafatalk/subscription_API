@@ -21,6 +21,8 @@ export class SigninComponent {
   username: any = null;
   password: any = null;
 
+  documentTypes: string[] = ['Identity Card', 'Passport', 'Driver License', 'Citizen ID'];
+
   constructor(
     private userservice: userService,
     private router: Router
