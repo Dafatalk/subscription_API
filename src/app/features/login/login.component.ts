@@ -10,8 +10,8 @@ import {TokenService} from "../../core/services/token.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
-  username: string = '';
-  password: string = '';
+  username: any = null;
+  password: any = null;
   rememberMe: boolean = false;
 
 
