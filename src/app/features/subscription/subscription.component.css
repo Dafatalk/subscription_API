@@ -187,8 +187,8 @@ th.mat-sort-header-sorted {
 }
 
 .buttonDelet {
-  width: 40px;
-  height: 40px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   background-color: rgb(211, 119, 119);
   border: none;
@@ -204,7 +204,7 @@ th.mat-sort-header-sorted {
 }
 
 .svgIcon {
-  width: 12px;
+  width: 9px;
   transition-duration: 0.3s;
 }
 
@@ -221,14 +221,14 @@ th.mat-sort-header-sorted {
 }
 
 .buttonDelet:hover .svgIcon {
-  width: 50px;
+  width: 30px;
   transition-duration: 0.3s;
   transform: translateY(55%);
 }
 
 .buttonDelet::before {
   position: absolute;
-  top: -25px;
+  top: -30px;
   content: "Delete";
   color: white;
   transition-duration: 0.1s;
@@ -243,8 +243,8 @@ th.mat-sort-header-sorted {
 }
 /* BOTON EDIT */
 .edit-button {
-  width: 40px;
-  height: 40px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   background-color: #020202;
   border: none;
@@ -261,7 +261,7 @@ th.mat-sort-header-sorted {
 }
 
 .edit-svgIcon {
-  width: 17px;
+  width: 13px;
   transition-duration: 0.3s;
 }
 
@@ -293,7 +293,7 @@ th.mat-sort-header-sorted {
   content: "Edit";
   color: white;
   transition-duration: 0.3s;
-  font-size: 2px;
+  font-size: 1px;
 }
 
 .edit-button:hover::before {
