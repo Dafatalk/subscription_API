@@ -1,8 +1,10 @@
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+:host {
+  display: block;
+}
+
+.main-content {
+  /*Se resta la altura del headerbar*/
+  padding-top: 100px;
+  height: calc(100vh - 100px);
+  overflow-y: auto;
 }

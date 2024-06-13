@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NewplanComponent } from './newplan/newplan.component'; 
+import { NewplanComponent } from './features/newplan/newplan.component';
 
 @Component({
   selector: 'app-root',

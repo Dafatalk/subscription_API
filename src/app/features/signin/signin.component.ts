@@ -4,11 +4,11 @@ import { User } from 'src/models/user';
 import { userService } from 'src/service/user.service';
 
 @Component({
-  selector: 'app-sigin',
-  templateUrl: './sigin.component.html',
-  styleUrls: ['./sigin.component.css']
+  selector: 'app-signin',
+  templateUrl: './signin.component.html',
+  styleUrls: ['./signin.component.css']
 })
-export class SiginComponent {
+export class SigninComponent {
   name: string = '';
   lastName: string = '';
   mobileNumber: string = '';
@@ -19,7 +19,7 @@ export class SiginComponent {
   password: string = '';
 
   constructor( private userservice:userService) {
-    
+
   }
   sigin() {
     const user:User = {
