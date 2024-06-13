@@ -1,9 +1,6 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #fff;
-
-  margin: 0;
-  padding: 0;
 }
 
 .tittle{
@@ -16,10 +13,7 @@ body {
 .pricing-table {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  align-items: center;
-  margin: 0;
-  padding: 50px 0;
+  /*align-items: center;*/
 }
 
 .filter {
@@ -142,8 +136,8 @@ body {
 
 .plans {
   display: flex;
-  justify-content: space-around; /* Añade esto */
-  flex-wrap: wrap; /* Añade esto */
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .plan {
@@ -156,7 +150,7 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   border-radius: 5px;
   width: 300px;
-  height: 310px;
+  height: 360px;
 }
 
 .plan:hover {
@@ -187,7 +181,7 @@ body {
   border-top: 1px solid #eee;
 }
 
-.plan button {
+.button {
   background-color: #111010;
   color: #fff;
   border: none;
@@ -197,6 +191,11 @@ body {
   border-radius: 5px;
   margin-top: 20px;
 }
+
+.button:hover {
+   transform: scale(1.05);
+   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+ }
 
 .periodButton:hover {
   transform: scale(1.05);

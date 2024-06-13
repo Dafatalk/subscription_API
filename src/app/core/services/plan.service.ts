@@ -44,6 +44,10 @@ import { Period } from 'src/app/core/models/period';
     const url = `${'/api/v1/rest/plan/list/'}${period}`;
     return this.http.get<any>(url);
   }
+  getPlanById(planId:any): Observable<any> {
+    const url = `${"/api/v1/rest/plan"}?id=${planId}`;
+    return this.http.get<any>(url);
+  }
   getPlanByName(name:any): Observable<any> {
 
     const url = `${'/api/v1/rest/plan/name/'}${name}`;

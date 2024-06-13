@@ -17,20 +17,24 @@
 
     <h2>{{ plan.name.toUpperCase() }}</h2>
 
-    <p class="price">${{ plan.price * period.months | number:'1.2-2' }}</p>
+    <p class="price">${{ getAmount() | number:'1.2-2' }}</p>
 
-    <p>${{ plan.price }}/Month</p>
+    <p>${{ getDiscountedPrice() }}/Month</p>
 
     <ul style="height: 70px">
       <li>{{ plan.description }}</li>
     </ul>
 
-    <p>Duration: {{ startDate | date: 'MMM d, y' }} - {{ endDate | date: 'MMM d, y' }}</p>
+    <p>{{ subscription.startDate | date: 'MMM d, y' }} - {{ subscription.endDate | date: 'MMM d, y' }}</p>
 
-    <button (click)="goBack()">Choose another plan</button>
+    <button class="button" (click)="goBack()">Choose another plan</button>
 
   </div>
 
+</div>
+
+<div style="display: flex; align-items: center; justify-content: center">
+  <button class="button" (click)="cancelSubscription(subscription.id)">Cancel my Subscription</button>
 </div>
 
 </body>

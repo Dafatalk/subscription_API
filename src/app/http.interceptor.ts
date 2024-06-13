@@ -15,7 +15,7 @@ export class AppHttpInterceptor implements HttpInterceptor {
       });
     }
 
-    // Continúa con la solicitud original
+    console.log(request)
     return next.handle(request);
   }
 }
