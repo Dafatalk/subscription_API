@@ -203,9 +203,9 @@
               mat-sort-header
               sortActionDescription="Sort by price"
             >
-              price
+              Price
             </th>
-            <td mat-cell *matCellDef="let element">{{ element.price }}</td>
+            <td mat-cell *matCellDef="let element">{{ element.price }} USD</td>
           </ng-container>
 
           <!-- Start Date Column -->
@@ -216,7 +216,7 @@
               mat-sort-header
               sortActionDescription="Sort by description"
             >
-              description
+              Description
             </th>
             <td mat-cell *matCellDef="let element">
               {{ element.description }}
@@ -227,7 +227,7 @@
 
           <ng-container matColumnDef="edit">
             <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let element">
+            <td class="tdarreglo" mat-cell *matCellDef="let element">
               <div class="button-container">
                 <button (click)="editPlan(element)" class="edit-button">
                   <svg class="edit-svgIcon" viewBox="0 0 512 512">
@@ -242,7 +242,7 @@
 
           <ng-container matColumnDef="delet">
             <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let element">
+            <td class="tdarreglo" mat-cell *matCellDef="let element">
               <div class="button-container">
                 <button
                   (click)="deletPlan(element.id, element.name)"
@@ -294,7 +294,7 @@
             >
               Discount
             </th>
-            <td mat-cell *matCellDef="let element">{{ element.discount }}</td>
+            <td mat-cell *matCellDef="let element">{{ element.discount }} %</td>
           </ng-container>
 
           <!-- month Column -->
@@ -315,7 +315,7 @@
           <!-- edit  -->
           <ng-container matColumnDef="edit">
             <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let element">
+            <td class="tdarreglo" mat-cell *matCellDef="let element">
               <div class="button-container">
                 <button (click)="editPeriod(element)" class="edit-button">
                   <svg class="edit-svgIcon" viewBox="0 0 512 512">
@@ -330,7 +330,7 @@
           <!-- delet -->
           <ng-container matColumnDef="delet">
             <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let element">
+            <td class="tdarreglo" mat-cell *matCellDef="let element">
               <div class="button-container">
                 <button
                   (click)="deletPeriod(element.id, element.name)"

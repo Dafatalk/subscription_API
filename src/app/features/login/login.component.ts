@@ -11,6 +11,8 @@ import {map, Subscription, switchMap} from "rxjs";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  errorReason: any;
+  mostrarMensajeError: boolean = false;
   username: any = null;
   password: any = null;
   isAdmin: boolean = false;
@@ -54,6 +56,13 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         console.error('Error al iniciar sesión:', error);
+        this.errorReason = 'incorrect user or password'
+        this.mostrarMensajeError = true
+        setTimeout(() => {
+          this.mostrarMensajeError = false;
+        }, 5000); // 5000 ms = 5 segu
+        // Manejar errores (por ejemplo, mostrar un mensaje de error al usuario)
+        console.error('Error al enviar la suscripción:', error);
       }
     );
   }
