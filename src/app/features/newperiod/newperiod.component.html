@@ -1,18 +1,21 @@
 <div mat-dialog-content class="form">
     <h1>CREATE PERIOD</h1>
     <section id="preguntas">
+      <div class="form-group">
       <p>
         <label for="name">Name:</label>
-        <input
+        <input class="form-control"
           #name
           type="text"
           name="nombres"
           id="name"
         />
       </p>
+    </div>
+    <div class="form-group">
       <p>
         <label for="price">Discount (%):</label>
-        <input
+        <input class="form-control"
           #discount
           type="number"
           name="price"
@@ -21,10 +24,11 @@
           numbersOnly
         />
       </p>
-  
+    </div>
+    <div class="form-group">
       <p>
         <label for="status">months:</label>
-        <input
+        <input class="form-control"
           #months
           type="tel"
           name="description"
@@ -33,6 +37,7 @@
           required=""
         />
       </p>
+    </div>
     </section>
     <section class="buttons" id="botones">
         <button

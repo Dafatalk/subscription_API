@@ -63,7 +63,6 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
   }
   changeTab(tab: String): void {
     this.activableTab = tab;
-    this.collapsedNav = false;
     this.updateTableData();
     const sub = document.getElementById('subsli');
     const plan = document.getElementById('planli');
@@ -130,6 +129,7 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
     this.planService.getPlan('monthly').subscribe(
       (response) => {
         this.plans = response
+        console.log("QUE ME ESTA DANDO ERROR",response)
         if (this.activableTab === 'plan') {
           this.plansDataSource.data = this.plans;
           this.displayedColumns = ['name', 'price', 'description', 'edit', 'delet'];
@@ -161,9 +161,10 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
   deletPlan(id:any, name:any){
     this.planService.deletPlan(id).subscribe(
       (response) => {
+        console.log("CUANDO SE ELIMINA UN PLAN:",response)
         this.elementoAEliminar = name;
         this.mostrarMensajeExito = true;
-        this.getPlans
+        this.getPlans();
         // Ocultar mensaje después de un tiempo
         setTimeout(() => {
           this.mostrarMensajeExito = false;
@@ -171,6 +172,8 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
 
       },
       (error) => {
+        this.getPlans();
+
         console.error('Error al eliminar el plan:', error);
         this.mostrarMensajeError = true;
         this.elementoAEliminar = "This plan cannot be deleted because there are active subscriptions that depend on it.";
@@ -184,16 +187,19 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
     this.planService.deletPeriod(id).subscribe(
 
       (response) => {
+        console.log("CUANDO SE ELIMINA UN PERIOD:",response)
+
         this.elementoAEliminar = ( "Period '" + name + "' has been deleted");
 
         this.mostrarMensajeExito = true;
-        this.getPeriod()
+        this.getPeriod();
         setTimeout(() => {
           this.mostrarMensajeExito = false;
         }, 5000); // 5000 ms = 5 segu
 
       },
       (error) => {
+        this.getPeriod();
         console.error('Error al enviar la suscripción:', error);
         this.mostrarMensajeError = true;
         this.elementoAEliminar = error.error;
@@ -257,6 +263,7 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
         this.elementoAEditar = result.data.name
         this.mostrarMensajeExitoEdit = true;
         result.data.closeReason = false;
+        this.getPlans();
         setTimeout(() => {
           this.mostrarMensajeExitoEdit = false;
         }, 5000); // 5000 ms = 5 segu
@@ -267,6 +274,7 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
         this.elementoAEditar = result.error
         this.mostrarMensajeErrorEdit = true;
         result.data.closeReason = false;
+        this.getPlans();
         setTimeout(() => {
           this.mostrarMensajeErrorEdit = false;
 
@@ -297,6 +305,7 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
         this.elementoAEditar = result.data.name
         this.mostrarMensajeExitoEdit = true;
         result.data.closeReason = false;
+        this.getPeriod();
         setTimeout(() => {
           this.mostrarMensajeExitoEdit = false;
         }, 5000); // 5000 ms = 5 segu
@@ -307,6 +316,7 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
         this.elementoAEditar = result.error
         this.mostrarMensajeErrorEdit = true;
         result.data.closeReason = false;
+        this.getPeriod();
         setTimeout(() => {
           this.mostrarMensajeErrorEdit = false;
 
@@ -314,6 +324,7 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
       }
     }, error => {
       this.elementoAEditar = error
+      this.getPeriod();
       setTimeout(() => {
         this.mostrarMensajeError = true;
       }, 5000); // 5000 ms = 5 segu
@@ -326,6 +337,7 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
       height: '90%',
     });
     dialogRef.afterClosed().subscribe(result => {
+      this.getPeriod();
       if(result.data.closeReason){
         console.log("closed correctly")
       }
@@ -345,6 +357,7 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
         this.elementoAEditar = result.error
         this.mostrarMensajeErrorEdit = true;
         result.data.closeReason = false;
+        this.getPeriod();
         setTimeout(() => {
           this.mostrarMensajeErrorEdit = false;
 
@@ -352,6 +365,7 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
       }
     }, error => {
       this.elementoAEditar = error
+      this.getPeriod();
       setTimeout(() => {
         this.mostrarMensajeError = true;
       }, 5000); // 5000 ms = 5 segu
@@ -370,9 +384,11 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
 
 
       else if (result.success) {
+        console.log(result)
         this.elementoAEditar = result.data.name
         this.mostrarMensajeExitoEdit = true;
         result.data.closeReason = false;
+        this.getPlans();
         setTimeout(() => {
           this.mostrarMensajeExitoEdit = false;
         }, 5000); // 5000 ms = 5 segu

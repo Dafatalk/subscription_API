@@ -1,7 +1,10 @@
  *{
     padding: 0 0 0;
  }
-
+ html, body {
+  height: 100%;
+  margin: 0;
+}
 
 /* TABLA BIEN */
 table {
@@ -9,7 +12,7 @@ table {
   box-shadow: none;
   background-color: transparent;
   margin-top: 40px;
-  margin-left: 150px;
+  margin-left: 300px;
 }
 
 th.mat-sort-header-sorted {
@@ -28,19 +31,23 @@ th.mat-sort-header-sorted {
     font: 100% / 1;
     color: #231f1f;
     font: 400 12px / 1 'Source Sans Pro', Helvetica, Arial, sans-serif;
-  }
+    display: flex;
+    height: 100%; 
+   }
 
   .panel-container {
     display: flex;
     background-color: #f4f4f4;
+    flex-grow: 1;
+    display: flex;
   }
 
   .panel-controls {
     float: left;
-    width: 175px;
+    width: 215px;
     background-color: #000000;
     font-size: 14px;
-    padding: 10px 0;
+    padding: 10px 20px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
