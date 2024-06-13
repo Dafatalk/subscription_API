@@ -29,7 +29,7 @@ import { HomeComponent } from './features/home/home.component';
 
 
 export function tokenGetter() {
-  return localStorage.getItem('access_token');
+  return localStorage.getItem('jwtToken');
 }
 
 const appRoutes: Routes=[
