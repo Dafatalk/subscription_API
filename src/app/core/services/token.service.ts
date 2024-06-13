@@ -10,7 +10,7 @@ export class TokenService {
   private tokenSubject: BehaviorSubject<string | null>;
 
   constructor() {
-    const token = localStorage.getItem('access_token');
+    const token = localStorage.getItem('jwtToken');
     this.tokenSubject = new BehaviorSubject<string | null>(token);
   }
 
@@ -19,12 +19,12 @@ export class TokenService {
   }
 
   setToken(token: string) {
-    localStorage.setItem('access_token', token);
+    localStorage.setItem('jwtToken', token);
     this.tokenSubject.next(token);
   }
 
   clearToken() {
-    localStorage.removeItem('access_token');
+    localStorage.removeItem('jwtToken');
     this.tokenSubject.next(null);
   }
 
