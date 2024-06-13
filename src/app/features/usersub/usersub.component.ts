@@ -1,23 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import {SubscriptionService} from "../../core/services/subscription.service";
 
 @Component({
   selector: 'app-usersub',
   templateUrl: './usersub.component.html',
   styleUrls: ['./usersub.component.css']
 })
+
 export class UsersubComponent implements OnInit {
+
   plan: any;
   period: any;
   startDate: Date = new Date();
   endDate: Date = new Date();
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private subscriptionService: SubscriptionService
+  ) {}
 
   ngOnInit(): void {
+
     this.plan = history.state.plan;
     this.period = history.state.period;
     this.endDate.setMonth(this.startDate.getMonth() + 1);
+
   }
 
   goBack(): void {

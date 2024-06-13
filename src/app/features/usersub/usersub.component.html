@@ -1,19 +1,41 @@
+<!doctype html>
 
-<div class="background">
-<div class="user-plan">
-  <h2>YOUR PLAN</h2>
+<html>
+
+<head>
+  <title>Plan</title>
+  <link rel="stylesheet" type="text/css" href="usersub.component.css">
+</head>
+
+<body style="background-color: #f4f4f4; height: 100%">
+
+<h2 class="tittle">YOUR PLAN</h2>
+
+<div class="pricing-table">
+
   <div class="plan">
+
     <h2>{{ plan.name.toUpperCase() }}</h2>
+
     <p class="price">${{ plan.price * period.months | number:'1.2-2' }}</p>
+
     <p>${{ plan.price }}/Month</p>
-    <ul>
+
+    <ul style="height: 70px">
       <li>{{ plan.description }}</li>
     </ul>
+
     <p>Duration: {{ startDate | date: 'MMM d, y' }} - {{ endDate | date: 'MMM d, y' }}</p>
+
     <button (click)="goBack()">Choose another plan</button>
+
   </div>
+
 </div>
-</div>
+
+</body>
+
+</html>
 
 
 

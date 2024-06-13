@@ -8,8 +8,8 @@ body {
 
 .pricing-table {
   display: flex;
-  justify-content: center; /* Asegura que los elementos se centren horizontalmente */
-  flex-wrap: wrap; /* Permite que los elementos se ajusten según el ancho disponible */
+  justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
   margin: 0;
   padding: 50px 0;
@@ -23,8 +23,8 @@ body {
 }
 
 .pricing-table .plan {
-  width: calc(190px); /* Ajusta el ancho para 3 elementos con margen */
-  margin: 10px; /* Añade un margen para separar las tarjetas */
+  width: calc(190px);
+  margin: 10px;
 }
 
 .filter button {

@@ -7,6 +7,7 @@
   <h4>Error</h4>
   {{ elementoAEliminar }}
 </div>
+
 <div *ngIf="mostrarMensajeExitoEdit" class="bs-callout bs-callout-success">
   <h4>Edited successfully!</h4>
   {{ elementoAEditar }} has been edited
@@ -16,9 +17,14 @@
   <h4>Error</h4>
   {{ elementoAEditar }}
 </div>
+
 <div class="bodywrap">
+
   <div class="panel-container">
+<!--  <div>-->
+
     <div class="panel-controls" [class.collapsed]="!collapsedNav">
+
       <ul>
         <li class="nav-control" (click)="collapse()">
           <i class="fa fa-bars">
@@ -43,25 +49,25 @@
                 </svg>
               </span>
               <span class="text">MENU</span>
-            </button></i
-          >
+            </button>
+          </i>
         </li>
         <li id="subsli" (click)="changeTab('subscription')">
           <a
-            ><i class="fa fa-users"></i><span class="label">Subscriptions</span
-            ><i class="fa fa-caret-left caret"></i
+          ><i class="fa fa-users"></i><span class="label">Subscriptions</span
+          ><i class="fa fa-caret-left caret"></i
           ></a>
         </li>
         <li id="planli" (click)="changeTab('plan')">
           <a
-            ><i class="fa fa-archive"></i><span class="label">Plans</span
-            ><i class="fa fa-caret-left caret"></i
+          ><i class="fa fa-archive"></i><span class="label">Plans</span
+          ><i class="fa fa-caret-left caret"></i
           ></a>
         </li>
         <li id="periodli" (click)="changeTab('period')">
           <a
-            ><i class="fa fa-thumb-tack"></i><span class="label">Periods</span
-            ><i class="fa fa-caret-left caret"></i
+          ><i class="fa fa-thumb-tack"></i><span class="label">Periods</span
+          ><i class="fa fa-caret-left caret"></i
           ></a>
         </li>
       </ul>
@@ -343,9 +349,9 @@
       </ng-container>
       <!-- PERIOD TABLE -->
     </section>
-    
+
   </div>
-  
+
 </div>
-<button (click)="createany()" id ="btnCrear" class="btnCrear"> Crear +
+<button (click)="createany()" id="btnCrear" class="btnCrear"> Crear +
 </button>
