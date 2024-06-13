@@ -12,75 +12,40 @@
 	margin: 0 auto;
 	border-radius: 4px;
   text-align: center;
-  height: 100%;
+  height: 90%;
   max-height: none;
 }
-.save{
-	display: block;
-	border: none;
-	margin: 20px auto;
-	width: 280px;
-	background-color: mediumseagreen;
-	padding: 15px 0;
-	text-align: center;
-	font-size: 18px;
-	border-radius: 4px;
+.cdk-overlay-pane {
+
+  max-height: 50%;
 }
-.save:hover{
-	background-color: #2a8a2d;
-}
+
+
 .form p{
     padding-top: 10px;
 
 }
-select{
-  background-color: #eaeaea;
-  font-size: 1.5em;
-  width: 340px;
-  height: 45px;
-}
-select option{
-	background-color: #eaeaea;
-}
-.orden{
-	display: inline-flex ;
-	margin: auto;
-	 
-}
-.orden input{
-	width: 200px;
-}
-
 label{
-  color: #808080;
-  font-size: 17px;
+  font-weight: bold;
+  font-size: medium;
+  display: block;
+  color: #333;
+  margin-bottom: 10px;
 }
-.hpta1{
-	margin-right: 10px;
+h1{
+  font-weight: bold;
+  font-size: 20px;
+  display: block;
+  color: #333;
 }
-.hpta2{
-	margin-left: 10px;
-}
-legend{
-  color: #808080;
-}
-.descripcion{
-	height: 70px;
-}
-
-
-
-
 input{
-	display: block;
-	border: none;
-	margin: 15px auto;
-	width: 300px;
-	background-color: #eaeaea;
-	padding: 5px 0;
-	text-align: center;
-	font-size: 15px;
-	border-radius: 4px;
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.06);
+  background-color: light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4)) !important;
 }
 
 /* Botón guardar chimba */
@@ -88,18 +53,17 @@ input{
     margin: 20px auto;
     font-family: inherit;
     font-size: 20px;
-    background: #212121;
-    color: white;
+    background-color: #111010;
+    color: #fff;
     fill: rgb(155, 153, 153);
-    padding: 0.7em 1em;
+    padding: 10px 20px;
     padding-left: 0.9em;
     display: flex;
     align-items: center;
     cursor: pointer;
     border: none;
-    border-radius: 15px;
-    font-weight: 1000;
-    width: 280px;
+    border-radius: 5px;
+    width: 150px;
 
   }
   
@@ -113,12 +77,12 @@ input{
     display: block;
     transform-origin: center center;
     transition: transform 0.3s ease-in-out;
-    margin-left: 3.6em;
+    margin-left: 0.7em;
 
   }
   
   .buttonSave:hover {
-    background: mediumseagreen;
+    background-color: #0056b3;
   }
   
   .buttonSave:hover .svg-wrapper {
@@ -142,7 +106,7 @@ input{
   /* boton cancelar */
   .button {
     position: relative;
-    width: 280px;
+    width: 150px;
     height: 4em;
     border: none;
     background: rgba(180, 83, 107, 0.416);

@@ -44,6 +44,10 @@ import { Period } from 'src/app/core/models/period';
     const url = `${'/api/v1/rest/plan/list/'}${period}`;
     return this.http.get<any>(url);
   }
+  getPlanById(planId:any): Observable<any> {
+    const url = `${"/api/v1/rest/plan"}?id=${planId}`;
+    return this.http.get<any>(url);
+  }
   getPlanByName(name:any): Observable<any> {
 
     const url = `${'/api/v1/rest/plan/name/'}${name}`;
@@ -55,10 +59,10 @@ import { Period } from 'src/app/core/models/period';
     return this.http.get<any>('/api/v1/rest/period/list');
   }
 
-  deletPlan(id:any): Observable<any> {
+  deletPlan(id:any): Observable<String> {
 
     const url = `${'/api/v1/rest/plan'}?id=${id}`;
-    return this.http.delete<any>(url);
+    return this.http.delete(url,{ responseType: 'text' });
   }
   editPlan(plan:Plan): Observable<any> {
     return this.http.put<any>('/api/v1/rest/plan', plan);

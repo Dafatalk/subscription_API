@@ -23,6 +23,10 @@ export class TokenService {
     return this.tokenSubject.asObservable();
   }
 
+  get userId$() {
+    return this.userSubject.asObservable();
+  }
+
   setToken(token: string) {
     localStorage.setItem('jwtToken', token);
     this.tokenSubject.next(token);

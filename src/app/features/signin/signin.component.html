@@ -1,3 +1,9 @@
+<div *ngIf="mostrarMensajeError" class="bs-callout bs-callout-danger">
+  <h4>Error</h4>
+  {{errorReason}}
+</div>
+
+
 <body>
 <div class="form-container">
   <form>
@@ -32,7 +38,9 @@
 
       <div class="form-group">
         <label for="documentType">Document type</label>
-        <input type="text" id="documentType" class="form-control" [(ngModel)]="documentType" name="documentType" required>
+        <select type="text" id="documentType" class="form-control" [(ngModel)]="documentType" name="documentType" required>
+          <option *ngFor="let type of documentTypes" [value]="type">{{ type }}</option>
+        </select>
       </div>
     </div>
 
@@ -48,9 +56,8 @@
       </div>
     </div>
 
-<!--    <a href="/home">-->
       <button type="submit" class="btn btn-primary" (click)="sigin()">Sign in</button>
-<!--    </a>-->
+
   </form>
   <p class="already-registered">Are you already signed in? <a href="/login">Click here</a> for login.</p>
 </div>

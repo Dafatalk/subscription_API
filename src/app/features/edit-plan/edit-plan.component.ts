@@ -24,25 +24,32 @@ export class EditPlanComponent implements OnInit {
   }
 
   editPlan(id:any ,name:any , price:any, description:any){
-
-    const newplan:any = {
-      id:id,
-      name:name,
-      price:price,
-      description:description
-    }
-    const updateData = {...this.data}
-
-    this.planservice.editPlan(newplan).subscribe(
-      (response) => {
-        this.dialogRef.close({success: true, data:updateData})
-        console.log('Respuesta del backend DE EDITAR UN PLAN:', response);
-      },
-      (error) => {
-        this.dialogRef.close({success: false, error: "error al editar el plan"})
-
-        console.error('Error al enviar la suscripción:', error);
+    if(name != '' && price != '' && description != ''){
+      const newplan:any = {
+        id:id,
+        name:name,
+        price:price,
+        description:description
       }
-    );
+      const updateData = {...this.data}
+  
+      this.planservice.editPlan(newplan).subscribe(
+        (response) => {
+          this.dialogRef.close({success: true, data:updateData})
+          console.log('Respuesta del backend DE EDITAR UN PLAN:', response);
+        },
+        (error) => {
+          this.dialogRef.close({success: false, error: "error al editar el plan"})
+  
+          console.error('Error al enviar la suscripción:', error);
+        }
+      );
+    }
+    else{
+      this.closeReason = false;
+      this.dialogRef.close({success: false, error: "fill all the spaces", closeReason:this.closeReason})
+      console.log("The edit period cannot be null")
+    }
+   
   }
 }

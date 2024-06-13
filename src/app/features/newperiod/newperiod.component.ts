@@ -24,25 +24,34 @@ export class NewperiodComponent implements OnInit {
 
 
   createPeriod(name:any , discount:any, months:any){
-
-    const newPeriod:Period = {
-      name:name,
-      discount:discount,
-      months:months
-    }
-    const updateData = {...this.data}
-
-    this.planservice.createPeriod(newPeriod).subscribe(
-      (response) => {
-        this.dialogRef.close({success: true, data:updateData})
-        console.log('Respuesta del backend DE CREAR UN PERIODO:', response);
-      },
-      (error) => {
-        this.dialogRef.close({success: false, error: "error al CREAR el PERIODO"})
-
-        console.error('Error al enviar el periodo:', error);
+    if(name != '' && discount != '' && months != ''){
+      const newPeriod:Period = {
+        name:name,
+        discount:discount,
+        months:months
       }
-    );
+      const updateData = {...this.data}
+  
+      this.planservice.createPeriod(newPeriod).subscribe(
+        (response) => {
+          this.dialogRef.close({success: true, data:updateData})
+          console.log('Respuesta del backend DE CREAR UN PERIODO:', response);
+        },
+        (error) => {
+          this.dialogRef.close({success: false, error: "error al CREAR el PERIODO"})
+  
+          console.error('Error al enviar el periodo:', error);
+        }
+      );
+    }
+    else{
+      this.closeReason = false;
+      this.dialogRef.close({success: false, error: "fill all the spaces", closeReason:this.closeReason})
+      console.log("The new period cannot be null")
+
+    }
+
+
   }
 
 

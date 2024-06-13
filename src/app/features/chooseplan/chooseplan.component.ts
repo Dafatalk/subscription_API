@@ -3,11 +3,18 @@ import {Router} from "@angular/router";
 import {PlanService} from 'src/app/core/services/plan.service';
 import {Observable} from "rxjs";
 import {tokenGetter} from "../../app.module";
+import {SubscriptionService} from "../../core/services/subscription.service";
+import {TokenService} from "../../core/services/token.service";
+import {SubscriptionRequest} from "../../core/models/subscriptionRequest";
 
 export interface Period {
   name: string;
   discount: number;
   months: number;
+}
+
+function wait(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 @Component({
@@ -21,11 +28,21 @@ export class ChooseplanComponent implements OnInit {
   periods: any [] = [];
   period: any = this.periods[0]
   showLoading: boolean = true;
+  subscriptionRequest: SubscriptionRequest = {
+    userId: null,
+    planId: null,
+    period: null
+  };
 
   planObservables: { [name: string]: Observable<any> } = {};
   activePeriodIndex: number | null = null;
 
-  constructor(private planservice: PlanService, private router: Router) {
+  constructor(
+    private planservice: PlanService,
+    private router: Router,
+    private subscriptionService: SubscriptionService,
+    private tokenService: TokenService
+  ) {
   }
 
   ngOnInit(): void {
@@ -41,6 +58,7 @@ export class ChooseplanComponent implements OnInit {
   setActivePeriod(period: Period, index: number) {
     this.showLoading = true;
     this.mostrar(period);
+    this.period = period
     this.activePeriodIndex = index;
   }
 
@@ -77,7 +95,6 @@ export class ChooseplanComponent implements OnInit {
         }
       },
       (error) => {
-        // Manejar errores (por ejemplo, mostrar un mensaje de error al usuario)
         console.error('Error al enviar la suscripción:', error);
       }
     );
@@ -87,9 +104,26 @@ export class ChooseplanComponent implements OnInit {
     this.period = period
   }
 
+  async createSubscription(planId: any, period: any): Promise<void> {
 
+    this.subscriptionRequest.userId = localStorage.getItem("userId");
+    this.subscriptionRequest.planId = planId;
+    this.subscriptionRequest.period = period.name;
+
+    console.log(this.subscriptionRequest);
+    this.subscriptionService.createSubscription(this.subscriptionRequest).subscribe(
+      (response) => {
+        console.log(response)
+      }
+    );
+
+    await wait(1000);
+    this.router.navigate(['/usersub']);
+
+  }
 
   protected readonly name = name;
+
 }
 
 
