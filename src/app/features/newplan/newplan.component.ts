@@ -1,7 +1,7 @@
 import { Component, OnInit, Directive, ElementRef, HostListener, Inject } from '@angular/core';
-import { Plan } from 'src/models/plan';
+import { Plan } from 'src/app/core/models/plan';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { PlanService } from 'src/service/plan.service';
+import { PlanService } from 'src/app/core/services/plan.service';
 
 
 @Component({
@@ -17,13 +17,13 @@ export class NewplanComponent implements OnInit {
 
 
   ngOnInit(): void {
-    
+
   }
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               private planservice:PlanService,
               private dialogRef: MatDialogRef<NewplanComponent>
-  ) {}      
-    
+  ) {}
+
   closeDialog(): void {
     this.closeReason = true;
     const updateData = { ...this.data, closeReason: this.closeReason };

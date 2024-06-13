@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {  Router } from '@angular/router';
-import { User } from 'src/models/user';
-import { userService } from 'src/service/user.service';
+import { User } from 'src/app/core/models/user';
+import { userService } from 'src/app/core/services/user.service';
+import {TokenService} from "../../core/services/token.service";
 
 @Component({
   selector: 'app-login',
@@ -15,10 +16,13 @@ export class LoginComponent implements OnInit{
 
 
   ngOnInit(): void {
-    
+
   }
-  constructor( private userservice:userService, private router:Router) {
-    
+  constructor(
+    private userservice:userService,
+    private router:Router,
+    private tokenService: TokenService) {
+
   }
 
   login(username:any, password:any) {
@@ -30,7 +34,8 @@ export class LoginComponent implements OnInit{
       (response) => {
         // Manejar la respuesta del backend (éxito, error, etc.)
         console.log('Respuesta del backend:', response);
-        localStorage.setItem('jwtToken', response.token);
+        this.tokenService.setToken(response.token);
+        // localStorage.setItem('jwtToken', response.token);
         if(response.isAdmin){
           this.router.navigate(['/subscription'])
         }
@@ -42,8 +47,8 @@ export class LoginComponent implements OnInit{
       (error) => {
         // Manejar errores (por ejemplo, mostrar un mensaje de error al usuario)
         console.error('Error al enviar la suscripción:', error);
-      } 
+      }
     );
   }
-  
+
 }

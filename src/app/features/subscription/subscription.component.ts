@@ -1,16 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PlanService } from 'src/service/plan.service';
-import { SubscriptionService } from 'src/service/subscription.service';
+import { PlanService } from 'src/app/core/services/plan.service';
+import { SubscriptionService } from 'src/app/core/services/subscription.service';
 import { MatDialog } from '@angular/material/dialog';
 import {AfterViewInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
-import { Period } from 'src/models/period';
-import { Subscription } from 'src/models/subscription';
-import { Plan } from 'src/models/plan';
+import { Period } from 'src/app/core/models/period';
+import { Subscription } from 'src/app/core/models/subscription';
+import { Plan } from 'src/app/core/models/plan';
 import { EditPlanComponent } from '../edit-plan/edit-plan.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { EditPeriodComponent } from '../edit-period/edit-period.component';
 import { NewperiodComponent } from '../newperiod/newperiod.component';
 import { NewplanComponent } from '../newplan/newplan.component';
@@ -71,7 +70,7 @@ export class SubscriptionComponent implements OnInit, AfterViewInit  {
     const period = document.getElementById('periodli');
     this.NoButton()
 
-  
+
     if (sub && plan && period) {
       // Reiniciar el color de todas las pestañas
       sub.style.color = '#ffffff';

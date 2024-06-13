@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {PlanService} from 'src/service/plan.service';
+import {PlanService} from 'src/app/core/services/plan.service';
 import {Observable} from "rxjs";
+import {tokenGetter} from "../../app.module";
 
 export interface Period {
   name: string;
@@ -31,6 +32,7 @@ export class ChooseplanComponent implements OnInit {
     this.getPeriod()
     this.mostrar(this.period)
     this.createPlanObservables();
+    console.log(tokenGetter())
   }
   selectPlan(plan: any): void {
     this.router.navigate(['/usersub'], { state: { plan: plan, period: this.period } });

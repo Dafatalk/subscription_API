@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Person } from 'src/models/person';
-import { User } from 'src/models/user';
-import { userService } from 'src/service/user.service';
+import { Person } from 'src/app/core/models/person';
+import { User } from 'src/app/core/models/user';
+import { userService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-signin',
@@ -51,5 +51,5 @@ export class SigninComponent {
       }
     );
 
-  }
+    }
 }

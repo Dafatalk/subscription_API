@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Period } from 'src/models/period';
-import { PlanService } from 'src/service/plan.service';
+import { Period } from 'src/app/core/models/period';
+import { PlanService } from 'src/app/core/services/plan.service';
 @Component({
   selector: 'app-newperiod',
   templateUrl: './newperiod.component.html',
@@ -22,7 +22,7 @@ export class NewperiodComponent implements OnInit {
     this.dialogRef.close({ success: false, data: updateData });
   }
 
-  
+
   createPeriod(name:any , discount:any, months:any){
 
     const newPeriod:Period = {

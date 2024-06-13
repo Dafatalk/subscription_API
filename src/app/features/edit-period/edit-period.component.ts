@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { PlanService } from 'src/service/plan.service';
+import { PlanService } from 'src/app/core/services/plan.service';
 
 @Component({
   selector: 'app-edit-period',
